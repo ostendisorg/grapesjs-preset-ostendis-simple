@@ -10,8 +10,7 @@ module.exports = ({ config }) => {
   return {
     ...config,
     entry: {
-      "grapesjs-preset-ostendis": "./src/index.ts",
-      // "grapesjs-preset-ostendis-adv": "./src/adv/index.ts",
+      "grapesjs-preset-ostendis-simple": "./src/index.ts",
     },
     output: {
       ...config.output,

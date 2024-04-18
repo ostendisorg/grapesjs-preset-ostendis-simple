@@ -10,8 +10,8 @@ TODO
 
 Download using one of the options:
 
-* `npm i grapesjs-preset-ostendis`
-* Latest release link https://github.com/ostendisorg/grapesjs-preset-ostendis/releases
+* `npm i grapesjs-preset-ostendis-simple`
+* Latest release link https://github.com/ostendisorg/grapesjs-preset-ostendis-simple/releases
 
 
 ## Usage
@@ -19,19 +19,19 @@ Download using one of the options:
 Directly in the browser
 ```html
 <link href="path/to/grapes.min.css" rel="stylesheet"/>
-<link href="path/to/grapesjs-preset-ostendis.css" rel="stylesheet"/>
+<link href="path/to/grapesjs-preset-ostendis-simple.css" rel="stylesheet"/>
 
 <script src="path/to/grapes.min.js"></script>
-<script src="path/to/grapesjs-preset-ostendis.min.js"></script>
+<script src="path/to/grapesjs-preset-ostendis-simple.min.js"></script>
 
 <div id="gjs"></div>
 
 <script type="text/javascript">
   var editor = grapesjs.init({
       container : '#gjs',
-      plugins: ['grapesjs-preset-ostendis'],
+      plugins: ['grapesjs-preset-ostendis-simple'],
       pluginsOpts: {
-        'grapesjs-preset-ostendis': {
+        'grapesjs-preset-ostendis-simple': {
           // options
         }
       }
@@ -42,7 +42,7 @@ Directly in the browser
 Modern javascript
 ```js
 import grapesjs from 'grapesjs';
-import plugin from 'grapesjs-preset-ostendis';
+import plugin from 'grapesjs-preset-ostendis-simple';
 
 const editor = grapesjs.init({
   container : '#gjs',
@@ -63,7 +63,7 @@ const editor = grapesjs.init({
 Clone the repository
 
 ```sh
-$ git clone https://github.com/DNUbyOstendis/grapesjs-preset-ostendis.git
+$ git clone https://github.com/ostendisorg/grapesjs-preset-ostendis-simple.git
 $ cd grapesjs-preset-ostendis
 ```
 
