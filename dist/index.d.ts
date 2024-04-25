@@ -17,14 +17,6 @@ export interface PluginOptions {
 	 */
 	usedOstBlockTypes?: string[];
 	/**
-	 * Custom style for table blocks.
-	 */
-	tableStyle?: Record<string, string>;
-	/**
-	 * Custom style for table cell blocks.
-	 */
-	cellStyle?: Record<string, string>;
-	/**
 	 * Import command id.
 	 * @default 'gjs-open-import-template'
 	 */
@@ -35,42 +27,7 @@ export interface PluginOptions {
 	 */
 	cmdInlineHtml?: string;
 	/**
-	 * Title for the import modal.
-	 * @default 'Import template'
-	 */
-	modalTitleImport?: string;
-	/**
-	 * Title for the export modal.
-	 * @default 'Export template'
-	 */
-	modalTitleExport?: string;
-	/**
-	 * Label for the export modal.
-	 * @default ''
-	 */
-	modalLabelExport?: string;
-	/**
-	 * Label for the import modal.
-	 * @default ''
-	 */
-	modalLabelImport?: string;
-	/**
-	 * Label for the import button.
-	 * @default 'Import'
-	 */
-	modalBtnImport?: string;
-	/**
-	 * Label for the Trait.
-	 * @default ''
-	 */
-	traitBlkValue?: string;
-	/**
-	 * Template as a placeholder inside import modal.
-	 * @default ''
-	 */
-	importPlaceholder?: string;
-	/**
-	 * If `true`, inlines CSS on export.
+	 * If `true`, inline CSS on export.
 	 * @default true
 	 */
 	inlineCss?: boolean;
@@ -110,61 +67,13 @@ export interface PluginOptions {
 	 */
 	juiceOpts?: juice.Options;
 	/**
-	 * Toolbar clone.
-	 * @default 'Clone list element'
+	 * Ostendis translations
 	 */
-	ostToolbarClone?: string;
-	/**
-	 * Toolbar delete.
-	 * @default 'Delete list element'
-	 */
-	ostToolbarDelete?: string;
-	/**
-	 * Toolbar up.
-	 * @default 'Move list element up'
-	 */
-	ostToolbarUp?: string;
-	/**
-	 * Toolbar down.
-	 * @default 'Move list element down'
-	 */
-	ostToolbarDown?: string;
-	/**
-	 * Toolbar down.
-	 * @default 'View components'
-	 */
-	cmdBtnDesktopLabel?: string;
-	/**
-	 * Toolbar down.
-	 * @default 'Desktop'
-	 */
-	cmdBtnTabletLabel?: string;
-	/**
-	 * Toolbar down.
-	 * @default 'Tablet'
-	 */
-	cmdBtnMobileLabel?: string;
-	/**
-	 * Toolbar down.
-	 * @default 'Mobile'
-	 */
-	cmdBtnViewCompLabel?: string;
-	/**
-	 * Toolbar down.
-	 * @default 'Undo'
-	 */
-	cmdBtnUndoLabel?: string;
-	/**
-	 * Toolbar down.
-	 * @default 'Redo'
-	 */
-	cmdBtnRedoLabel?: string;
-	/**
-	 * Toolbar down.
-	 * @default 'Open Parameter'
-	 */
-	openTmBtnTitle?: string;
+	t9n?: OstTranslations;
 }
+export type OstTranslations = {
+	[key: string]: string;
+};
 export type RequiredPluginOptions = Required<PluginOptions>;
 declare const plugin: Plugin<PluginOptions>;
 

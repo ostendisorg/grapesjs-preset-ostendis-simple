@@ -72,7 +72,7 @@ export default (editor: Editor, opts: Required<PluginOptions>) => {
   });
 
   TraitManager.addType("value", {
-    label: opts.traitBlkValue,
+    label: opts.t9n.traitBlkValue,
     min: 0, // Minimum number value
     max: 100, // Maximum number value
     events: {

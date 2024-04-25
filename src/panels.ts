@@ -36,7 +36,7 @@ export default (editor: Editor, opts: Required<PluginOptions>) => {
           id: cmdDeviceTablet,
           command: cmdDeviceTablet,
           attributes: {
-            "data-tooltip": opts.cmdBtnTabletLabel,
+            "data-tooltip": opts.t9n.cmdBtnTabletLabel,
             "data-tooltip-pos": "bottom",
           },
           label: `<svg ${iconStyle} viewBox="0 0 24 24">
@@ -47,7 +47,7 @@ export default (editor: Editor, opts: Required<PluginOptions>) => {
           id: cmdDeviceMobile,
           command: cmdDeviceMobile,
           attributes: {
-            "data-tooltip": opts.cmdBtnMobileLabel,
+            "data-tooltip": opts.t9n.cmdBtnMobileLabel,
             "data-tooltip-pos": "bottom",
           },
           label: `<svg ${iconStyle} viewBox="0 0 24 24">
@@ -64,7 +64,7 @@ export default (editor: Editor, opts: Required<PluginOptions>) => {
           command: activateOutline,
           context: activateOutline,
           attributes: {
-            "data-tooltip": opts.cmdBtnViewCompLabel,
+            "data-tooltip": opts.t9n.cmdBtnViewCompLabel,
             "data-tooltip-pos": "bottom",
           },
           label: `<svg ${iconStyle} viewBox="0 0 24 24">
@@ -75,7 +75,7 @@ export default (editor: Editor, opts: Required<PluginOptions>) => {
           id: "undo",
           command: "core:undo",
           attributes: {
-            "data-tooltip": opts.cmdBtnUndoLabel,
+            "data-tooltip": opts.t9n.cmdBtnUndoLabel,
             "data-tooltip-pos": "bottom",
           },
           label: `<svg ${iconStyle} viewBox="0 0 24 24">
@@ -86,7 +86,7 @@ export default (editor: Editor, opts: Required<PluginOptions>) => {
           id: "redo",
           command: "core:redo",
           attributes: {
-            "data-tooltip": opts.cmdBtnRedoLabel,
+            "data-tooltip": opts.t9n.cmdBtnRedoLabel,
             "data-tooltip-pos": "bottom",
           },
           label: `<svg ${iconStyle} viewBox="0 0 24 24">
@@ -102,7 +102,7 @@ export default (editor: Editor, opts: Required<PluginOptions>) => {
           id: openTraits,
           command: openTraits,
           attributes: {
-            "data-tooltip": opts.openTmBtnTitle,
+            "data-tooltip": opts.t9n.openTmBtnTitle,
             "data-tooltip-pos": "bottom",
           },
           label: `<svg ${iconStyle} viewBox="0 0 24 24">
@@ -120,12 +120,11 @@ export default (editor: Editor, opts: Required<PluginOptions>) => {
       btn?.set("active", true);
     }
 
-
     if (opts.showBlocksOnLoad) {
       const btn = Panels.getButton("views", openBlocks);
       btn?.set("active", true);
     }
-    
+
     if (opts.showTraitsOnLoad) {
       const btn = Panels.getButton("views", openTraits);
       btn?.set("active", true);

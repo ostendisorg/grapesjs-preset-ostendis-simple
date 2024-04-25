@@ -16,48 +16,17 @@ const plugin: Plugin<PluginOptions> = async (editor, opts: Partial<PluginOptions
   const options: RequiredPluginOptions = {
     blocks: [],
     block: () => ({}),
-    juiceOpts: {},
-    usedOstBlockTypes: [],
     cmdOpenImport: "gjs-open-import-template",
     cmdInlineHtml: "gjs-get-inlined-html",
-    modalTitleImport: "Import template",
-    modalTitleExport: "Export template",
-    modalLabelImport: "",
-    modalLabelExport: "",
-    modalBtnImport: "Import",
     codeViewerTheme: "hopscotch",
-    traitBlkValue: "",
-    importPlaceholder: "",
+    juiceOpts: {},
+    usedOstBlockTypes: [],
     inlineCss: true,
-    cellStyle: {
-      padding: "0",
-      margin: "0",
-      "vertical-align": "top",
-    },
-    tableStyle: {
-      height: "150px",
-      margin: "0 auto 10px auto",
-      padding: "5px 5px 5px 5px",
-      width: "100%",
-    },
     updateStyleManager: true,
     showStylesOnChange: true,
     showBlocksOnLoad: false,
     showTraitsOnLoad: true,
     showOutlineOnLoad: true,
-
-    ostToolbarClone: "Clone list element",
-    ostToolbarDelete: "Delete list element",
-    ostToolbarUp: "Move list element up",
-    ostToolbarDown: "Move list element down",
-
-    cmdBtnDesktopLabel: "Desktop",
-    cmdBtnTabletLabel: "Tablet",
-    cmdBtnMobileLabel: "Mobile",
-    cmdBtnViewCompLabel: "View components",
-    cmdBtnUndoLabel: "Undo",
-    cmdBtnRedoLabel: "Redo",
-    openTmBtnTitle: "Open Parameter",
     t9n: ostTrans,
     ...opts,
   };
@@ -95,7 +64,7 @@ const plugin: Plugin<PluginOptions> = async (editor, opts: Partial<PluginOptions
       if (selected.is("ulistitem")) {
         console.log("is ulistitem");
         //showOstToolbar(selected);
-      } 
+      }
       // else if (selected.isChildOf("ulistitem")) {
       //   showOstToolbar(selected.closestType("ulistitem"));
       // } else if (selected.getEl()?.tagName === "LI") {
@@ -140,7 +109,7 @@ const plugin: Plugin<PluginOptions> = async (editor, opts: Partial<PluginOptions
       const cBtn = document.createElement("div");
       cBtn.innerHTML = '<svg viewBox="0 0 24 24"><path fill="currentColor" d="M12 3a9 9 0 0 0 0 18 9 9 0 0 0 0-18zm-1.3 3.88h2.6v3.82h3.82v2.6H13.3v3.82h-2.6V13.3H6.88v-2.6h3.82z"/></svg>';
       cBtn.classList.add("gjs-ost-toolbar-item", "clone");
-      cBtn.title = options.ostToolbarClone;
+      cBtn.title = options.t9n.ostToolbarClone;
       cBtn.addEventListener("click", () => {
         if (elPos) {
           listItem?.parent()?.append(listItem?.clone(), { at: elPos + 1 });
@@ -151,7 +120,7 @@ const plugin: Plugin<PluginOptions> = async (editor, opts: Partial<PluginOptions
       //Add delete button
       const dBtn = document.createElement("div");
       dBtn.innerHTML = '<svg viewBox="0 0 24 24"><path fill="currentColor" d="M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18zm5.12 7.7v2.6H6.88v-2.6z"/></svg>';
-      dBtn.title = options.ostToolbarDelete;
+      dBtn.title = options.t9n.ostToolbarDelete;
       dBtn.classList.add("gjs-ost-toolbar-item", "del");
       if (elLast != 0) {
         dBtn.addEventListener("click", () => {
@@ -166,7 +135,7 @@ const plugin: Plugin<PluginOptions> = async (editor, opts: Partial<PluginOptions
       // Add move up button
       const upBtn = document.createElement("div");
       upBtn.innerHTML = '<svg viewBox="0 0 24 24"><path fill="currentColor" d="M1.9 20.75 12 3.25l10.1 17.5Z"/></svg>';
-      upBtn.title = options.ostToolbarUp;
+      upBtn.title = options.t9n.ostToolbarUp;
       upBtn.classList.add("gjs-ost-toolbar-item", "up");
       upBtn.addEventListener("click", () => {
         if (elPos && listItem?.parent() != undefined) {
@@ -183,7 +152,7 @@ const plugin: Plugin<PluginOptions> = async (editor, opts: Partial<PluginOptions
       // Add move down button
       const dwnBtn = document.createElement("div");
       dwnBtn.innerHTML = '<svg viewBox="0 0 24 24"><path fill="currentColor" d="M22.4 3.25 12 20.75 1.6 3.25Z"/></svg>';
-      dwnBtn.title = options.ostToolbarDown;
+      dwnBtn.title = options.t9n.ostToolbarDown;
       dwnBtn.classList.add("gjs-ost-toolbar-item", "down");
       if (elPos) {
         var toPos = elPos + 2;
