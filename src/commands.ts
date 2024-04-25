@@ -1,5 +1,5 @@
 import type { Editor } from 'grapesjs';
-import { PluginOptions } from '.';
+import PluginOptions from "./pluginOptions";
 import { cmdDeviceDesktop, cmdDeviceMobile, cmdDeviceTablet } from './consts';
 
 export default async (editor: Editor, opts: Required<PluginOptions>) => {

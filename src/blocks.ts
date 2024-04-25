@@ -1,5 +1,5 @@
 import type { Editor, BlockProperties } from "grapesjs";
-import { PluginOptions } from ".";
+import PluginOptions from "./pluginOptions";
 
 export default function (editor: Editor, opts: Required<PluginOptions>) {
   const { Blocks } = editor;

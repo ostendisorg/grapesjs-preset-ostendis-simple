@@ -1,5 +1,5 @@
 import type { Editor } from "grapesjs";
-import { PluginOptions } from ".";
+import PluginOptions from "./pluginOptions";
 import { cmdDeviceDesktop, cmdDeviceMobile, cmdDeviceTablet } from "./consts";
 
 export default (editor: Editor, opts: Required<PluginOptions>) => {
@@ -24,7 +24,7 @@ export default (editor: Editor, opts: Required<PluginOptions>) => {
           id: cmdDeviceDesktop,
           command: cmdDeviceDesktop,
           attributes: {
-            "data-tooltip": opts.cmdBtnDesktopLabel,
+            "data-tooltip": opts.t9n.cmdBtnDesktopLabel,
             "data-tooltip-pos": "bottom",
           },
           active: true,
