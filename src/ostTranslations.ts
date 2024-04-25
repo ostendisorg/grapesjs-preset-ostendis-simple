@@ -1,13 +1,7 @@
 import type { OstTranslations } from "./pluginOptions";
 
 export const ostTrans: OstTranslations = {
-  modalTitleImport: "Import template",
-  modalTitleExport: "Export template",
-  modalLabelImport: "",
-  modalLabelExport: "",
-  modalBtnImport: "Import",
   traitBlkValue: "",
-  importPlaceholder: "",
 
   traitBlkOstendisTooltip: "Define Ostendis block.",
   traitOstNone: "None",
