@@ -205,7 +205,7 @@ export interface PluginOptions {
 
 export type RequiredPluginOptions = Required<PluginOptions>;
 
-const plugin: Plugin<PluginOptions> = (editor, opts: Partial<PluginOptions> = {}) => {
+const plugin: Plugin<PluginOptions> = async (editor, opts: Partial<PluginOptions> = {}) => {
   let config = editor.getConfig();
 
   const options: RequiredPluginOptions = {
@@ -259,10 +259,10 @@ const plugin: Plugin<PluginOptions> = (editor, opts: Partial<PluginOptions> = {}
   // Change some config
   config.devicePreviewMode = true;
 
-  loadCommands(editor, options);
+  await loadCommands(editor, options);
   loadBlocks(editor, options);
   loadPanels(editor, options);
-  loadRte(editor, options);
+  await loadRte(editor, options);
   loadTraits(editor, options);
 
   // Beautify tooltips
@@ -277,38 +277,38 @@ const plugin: Plugin<PluginOptions> = (editor, opts: Partial<PluginOptions> = {}
     el.setAttribute("title", "");
   }
 
-  // On selected components
-  editor.on("component:selected", () => {
-    var selected = editor.getSelected();
+  // // On selected components
+  // editor.on("component:selected", () => {
+  //   let selected = editor.getSelected();
 
-    if (selected != undefined) {
-      selected.set({ draggable: false, removable: false, copyable: false });
+  //   if (selected != undefined) {
+  //     selected.setAttributes({ draggable: false, removable: false, copyable: false });
 
-      if (selected.is("ulistitem")) {
-        showOstToolbar(selected);
-      } else if (selected.isChildOf("ulistitem")) {
-        showOstToolbar(selected.closestType("ulistitem"));
-      } else if (selected.getEl()?.tagName === "LI") {
-        // If list element empty replace with placeholder text (M&E case:)
-        if (selected.components().length === 0 && !selected.get("content")) {
-          var selectedPosition = selected.index();
-          var newComponent = selected.parent()?.append("<li>Text</li>", { at: selectedPosition });
-          selected.remove();
-          editor.select(newComponent);
-          selected = editor.getSelected();
-        }
-        showOstToolbar(selected);
-      } else if (isChildOfElement(selected.getEl(), "LI")) {
-        showOstToolbar(selected.closest("li"));
-      }
-    }
-  });
+  //     if (selected.is("ulistitem")) {
+  //       showOstToolbar(selected);
+  //     } else if (selected.isChildOf("ulistitem")) {
+  //       showOstToolbar(selected.closestType("ulistitem"));
+  //     } else if (selected.getEl()?.tagName === "LI") {
+  //       // If list element empty replace with placeholder text (M&E case:)
+  //       if (selected.components() != null && selected.getAttributes().content != "") {
+  //         var selectedPosition = selected.index();
+  //         var newComponent = selected.parent()?.append("<li>Text</li>", { at: selectedPosition });
+  //         selected.remove();
+  //         editor.select(newComponent);
+  //         selected = editor.getSelected();
+  //       }
+  //       showOstToolbar(selected);
+  //     } else if (isChildOfElement(selected.getEl(), "LI")) {
+  //       showOstToolbar(selected.closest("li"));
+  //     }
+  //   }
+  // });
 
-  // On deselected components
-  editor.on("component:deselected", () => {
-    var ostToolbar = document.querySelector(".gjs-ost-toolbar");
-    ostToolbar?.classList.remove("show");
-  });
+  // // On deselected components
+  // editor.on("component:deselected", () => {
+  //   var ostToolbar = document.querySelector(".gjs-ost-toolbar");
+  //   ostToolbar?.classList.remove("show");
+  // });
 
   function isChildOfElement(element: HTMLElement | undefined, tag: string) {
     while (element?.parentNode) {
