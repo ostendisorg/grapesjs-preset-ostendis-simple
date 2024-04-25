@@ -1,6 +1,5 @@
 .DS_Store
 private/
-dist/
 img/
 js/
 node_modules/
