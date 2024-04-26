@@ -1,7 +1,7 @@
 import type { Editor } from "grapesjs";
 import PluginOptions from "./pluginOptions";
 
-export default function (editor: Editor, opts: Required<PluginOptions>) {
+export default (editor: Editor, opts: Required<PluginOptions>) => {
   const { DomComponents } = editor;
 
   // Define ostendis type trait for text and default components
@@ -116,4 +116,4 @@ export default function (editor: Editor, opts: Required<PluginOptions>) {
       },
     },
   });
-}
+};

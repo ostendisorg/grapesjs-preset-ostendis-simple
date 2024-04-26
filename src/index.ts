@@ -34,12 +34,14 @@ const plugin: Plugin<PluginOptions> = async (editor, opts: Partial<PluginOptions
   // Change some config
   config.devicePreviewMode = true;
 
+  loadComponents(editor, options);
+  loadTraits(editor, options);
   await loadCommands(editor, options);
   loadBlocks(editor, options);
   loadPanels(editor, options);
   await loadRte(editor, options);
-  loadTraits(editor, options);
-  loadComponents(editor, options);
+  
+  
 
   // Beautify tooltips
   var titles = document.querySelectorAll("*[data-tooltip-pos]");

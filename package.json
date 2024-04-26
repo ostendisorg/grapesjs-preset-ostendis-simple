@@ -8,7 +8,7 @@
   ],
   "scripts": {
     "v:patch": "npm version --no-git-tag-version patch",
-    "start": "grapesjs-cli serve --devServer='{\"open\": false}'",
+    "start": "grapesjs-cli serve",
     "build": "grapesjs-cli build",
     "build:css": "node-sass src/style/main.scss dist/grapesjs-preset-ostendis-simple.css",
     "test": "jest --passWithNoTests",
