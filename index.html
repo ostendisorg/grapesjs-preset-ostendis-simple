@@ -18,45 +18,6 @@
     height: 100%;
     margin: 0;
   }
-
-  .nl-link {
-    color: inherit;
-  }
-
-  .info-link {
-    text-decoration: none;
-  }
-
-  #info-cont {
-    line-height: 17px;
-  }
-
-  .grapesjs-logo {
-    display: block;
-    height: 90px;
-    margin: 0 auto;
-    width: 90px;
-  }
-
-  .grapesjs-logo path {
-    stroke: #eee !important;
-    stroke-width: 8 !important;
-  }
-
-  #toast-container {
-    font-size: 13px;
-    font-weight: lighter;
-  }
-
-  #toast-container>div,
-  #toast-container>div:hover {
-    box-shadow: 0 0 12px rgba(0, 0, 0, 0.1);
-    font-family: Helvetica, sans-serif;
-  }
-
-  #toast-container>div {
-    opacity: 0.95;
-  }
 </style>
 
 <body>
@@ -625,6 +586,7 @@
             rte.exec('insertText', text);
           },
         },
+        log: ["warning", "error"],
         container: "#gjs",
         fromElement: true,
         cssIcons: null,
