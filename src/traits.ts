@@ -70,7 +70,7 @@ export default (editor: Editor, opts: Required<PluginOptions>) => {
       }
     },
   });
-
+  // Trait for range
   TraitManager.addType("value", {
     label: opts.t9n.traitBlkValue,
     min: 0, // Minimum number value

@@ -122,51 +122,52 @@
                 <ul class="ulist fa-ul" data-gjs-type="ulist">
                   <li style="text-align: left" data-gjs-type="ulistitem">
                     <span class="fa-li" style="left: -2em; width: 2em">
-                      <i class="fas fa-circle" data-gjs-type="icon"
-                        style="font-size: 0.4em; line-height: inherit; display: block"></i>
+                      <i class="fa-solid fa-envelope" data-gjs-type="icon"
+                        style="font-size: 1em; line-height: inherit; display: block"></i>
                     </span>
                     <p style="margin: 0; padding: 0; text-align: left">Text 1</p>
                   </li>
                   <li style="text-align: left" data-gjs-type="ulistitem">
                     <span class="fa-li" style="left: -2em; width: 2em">
-                      <i class="fas fa-circle" data-gjs-type="icon"
-                        style="font-size: 0.4em; line-height: inherit; display: block"></i>
+                      <i class="fa-solid fa-cog fa-spin" data-gjs-type="icon"
+                        style="font-size: 1em; line-height: inherit; display: block"></i>
                     </span>
                     <p style="margin: 0; padding: 0; text-align: left">Text 2 kein type ulistitem</p>
                   </li>
                   <li style="text-align: left" data-gjs-type="ulistitem">
                     <span class="fa-li" style="left: -2em; width: 2em">
-                      <i class="fas fa-circle" style="font-size: 0.4em; line-height: inherit; display: block"></i>
+                      <i class="fa-solid fa-ghost fa-rotate-by"
+                        style="font-size: 1em; line-height: inherit; display: block;--fa-rotate-angle: 5deg;"></i>
                     </span>
                     <p style="margin: 0; padding: 0; text-align: left">Text 3 kein type icon</p>
                   </li>
                   <li style="text-align: left" data-gjs-type="ulistitem">
                     <span class="fa-li" style="left: -2em; width: 2em">
-                      <i class="fas fa-circle" data-gjs-type="icon"
-                        style="font-size: 0.4em; line-height: inherit; display: block"></i>
+                      <i class="fa-solid fa-igloo" data-gjs-type="icon"
+                        style="font-size: 1em; line-height: inherit; display: block;"></i>
                     </span>
                     <p style="margin: 0; padding: 0; text-align: left">Text 4</p>
                   </li>
                 </ul>
 
                 <ul class="ulist">
-                  <li>parent ulist</li>
-                  <li class="ulistitem">parent ulist, this ulistitem</li>
+                  <li>default ul li with parent class="ulist"</li>
+                  <li class="ulistitem">default ul li with parent class="ulist", this class="ulistitem"</li>
                 </ul>
 
                 <ul>
-                  <li>nothing1</li>
-                  <li>nothing2</li>
-                  <li>empty li</li>
+                  <li>default ul li no classes</li>
+                  <li>default ul li no classes</li>
+                  <li>empty li (M&E) ↴</li>
                   <li></li>
                 </ul>
 
                 <ul>
                   <li>
-                    <p>with p tag</p>
+                    <p>default ul li no classes with p tag</p>
                   </li>
-                  <li><span>with span tag</span></li>
-                  <li>only text</li>
+                  <li><span>default ul li no classes with span tag</span></li>
+                  <li>default ul li no classes [empty li (M&E) ↴]</li>
                   <li></li>
                 </ul>
 
@@ -617,9 +618,16 @@
         storageManager: false,
         richTextEditor: {
           actions: ["bold", "italic", "underline", "link"],
+          onPaste: ({ ev, rte }) => {
+            ev.preventDefault();
+            const { clipboardData } = ev;
+            const text = clipboardData.getData('text');
+            rte.exec('insertText', text);
+          },
         },
         container: "#gjs",
         fromElement: true,
+        cssIcons: null,
         canvas: {
           styles: ["https://use.fontawesome.com/releases/v6.5.1/css/all.css", "./style/canvasStyle.css"],
         },

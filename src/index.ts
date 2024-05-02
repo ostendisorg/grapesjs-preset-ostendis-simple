@@ -40,8 +40,6 @@ const plugin: Plugin<PluginOptions> = async (editor, opts: Partial<PluginOptions
   loadBlocks(editor, options);
   loadPanels(editor, options);
   await loadRte(editor, options);
-  
-  
 
   // Beautify tooltips
   var titles = document.querySelectorAll("*[data-tooltip-pos]");
@@ -55,41 +53,47 @@ const plugin: Plugin<PluginOptions> = async (editor, opts: Partial<PluginOptions
     el.setAttribute("title", "");
   }
 
+  // On load
+  editor.on("load", () => {
+    // Create ostendis toolbar
+    const tools = document.getElementById("gjs-tools");
+    const ostTools = document.createElement("div");
+    ostTools.classList.add("gjs-ost-toolbar");
+    tools?.append(ostTools);
+  });
+
   // On selected components
   editor.on("component:selected", () => {
     let selected = editor.getSelected();
 
     if (selected != undefined) {
-      console.log("is defined");
       selected.addAttributes({ draggable: "false", removable: "false", copyable: "false" });
 
       if (selected.is("ulistitem")) {
-        console.log("is ulistitem");
-        //showOstToolbar(selected);
+        showOstToolbar(selected);
+      } else if (selected.isChildOf("ulistitem")) {
+        showOstToolbar(selected.closestType("ulistitem"));
+      } else if (selected.getEl()?.tagName === "LI") {
+        //If list element is empty replace with placeholder text (M&E case:)
+        if (selected.components().length == 0) {
+          var selectedPosition = selected.index();
+          var newComponent = selected.parent()?.append("<li>Text</li>", { at: selectedPosition });
+          selected.remove();
+          editor.select(newComponent);
+          selected = editor.getSelected();
+        }
+        showOstToolbar(selected);
+      } else if (isChildOfElement(selected.getEl(), "LI")) {
+        showOstToolbar(selected.closest("li"));
       }
-      // else if (selected.isChildOf("ulistitem")) {
-      //   showOstToolbar(selected.closestType("ulistitem"));
-      // } else if (selected.getEl()?.tagName === "LI") {
-      //   // If list element empty replace with placeholder text (M&E case:)
-      //   if (selected.components() != null && selected.getAttributes().content != "") {
-      //     var selectedPosition = selected.index();
-      //     var newComponent = selected.parent()?.append("<li>Text</li>", { at: selectedPosition });
-      //     selected.remove();
-      //     editor.select(newComponent);
-      //     selected = editor.getSelected();
-      //   }
-      //   showOstToolbar(selected);
-      // } else if (isChildOfElement(selected.getEl(), "LI")) {
-      //   showOstToolbar(selected.closest("li"));
-      // }
     }
   });
 
-  // // On deselected components
-  // editor.on("component:deselected", () => {
-  //   var ostToolbar = document.querySelector(".gjs-ost-toolbar");
-  //   ostToolbar?.classList.remove("show");
-  // });
+  // On deselected components
+  editor.on("component:deselected", () => {
+    var ostToolbar = document.querySelector(".gjs-ost-toolbar");
+    ostToolbar?.classList.remove("show");
+  });
 
   function isChildOfElement(element: HTMLElement | undefined, tag: string) {
     while (element?.parentNode) {
@@ -100,7 +104,7 @@ const plugin: Plugin<PluginOptions> = async (editor, opts: Partial<PluginOptions
   }
 
   function showOstToolbar(listItem: Component | undefined) {
-    var elPos = listItem?.index();
+    var elPos = listItem?.index() || 0;
     var elLast = listItem?.parent()?.getLastChild().index();
 
     var ostToolbar = document.querySelector(".gjs-ost-toolbar");
@@ -113,9 +117,7 @@ const plugin: Plugin<PluginOptions> = async (editor, opts: Partial<PluginOptions
       cBtn.classList.add("gjs-ost-toolbar-item", "clone");
       cBtn.title = options.t9n.ostToolbarClone;
       cBtn.addEventListener("click", () => {
-        if (elPos) {
-          listItem?.parent()?.append(listItem?.clone(), { at: elPos + 1 });
-        }
+        listItem?.parent()?.append(listItem?.clone(), { at: elPos + 1 });
       });
       ostToolbar.appendChild(cBtn);
 
@@ -139,16 +141,20 @@ const plugin: Plugin<PluginOptions> = async (editor, opts: Partial<PluginOptions
       upBtn.innerHTML = '<svg viewBox="0 0 24 24"><path fill="currentColor" d="M1.9 20.75 12 3.25l10.1 17.5Z"/></svg>';
       upBtn.title = options.t9n.ostToolbarUp;
       upBtn.classList.add("gjs-ost-toolbar-item", "up");
-      upBtn.addEventListener("click", () => {
-        if (elPos && listItem?.parent() != undefined) {
-          let parent = listItem.parent();
-          if (parent) {
-            listItem?.move(parent, { at: elPos - 1 });
+      if (elPos > 0) {
+        upBtn.addEventListener("click", () => {
+          if (elPos && listItem?.parent() != undefined) {
+            let parent = listItem.parent();
+            if (parent) {
+              listItem?.move(parent, { at: elPos - 1 });
+            }
+            editor.selectRemove(listItem);
+            editor.select(listItem);
           }
-          editor.selectRemove(listItem);
-          editor.select(listItem);
-        }
-      });
+        });
+      } else {
+        upBtn.classList.add("disable");
+      }
       ostToolbar.appendChild(upBtn);
 
       // Add move down button
@@ -156,7 +162,7 @@ const plugin: Plugin<PluginOptions> = async (editor, opts: Partial<PluginOptions
       dwnBtn.innerHTML = '<svg viewBox="0 0 24 24"><path fill="currentColor" d="M22.4 3.25 12 20.75 1.6 3.25Z"/></svg>';
       dwnBtn.title = options.t9n.ostToolbarDown;
       dwnBtn.classList.add("gjs-ost-toolbar-item", "down");
-      if (elPos) {
+      if (elPos != elLast) {
         var toPos = elPos + 2;
         if (elPos == elLast) {
           toPos = 0;
@@ -171,13 +177,39 @@ const plugin: Plugin<PluginOptions> = async (editor, opts: Partial<PluginOptions
             editor.select(listItem);
           }
         });
-        ostToolbar.appendChild(dwnBtn);
+      } else {
+        dwnBtn.classList.add("disable");
       }
+      ostToolbar.appendChild(dwnBtn);
 
       // Add show
       ostToolbar.classList.add("show");
     }
   }
+
+  // On storage start
+  editor.on("storage:start", () => {
+    // Reset all Components
+    const getAllComponents = (model: any, result: any[] = []) => {
+      result.push(model);
+      model.components().each((mod: any) => getAllComponents(mod, result));
+      return result;
+    };
+    var allComponents = getAllComponents(editor.DomComponents.getWrapper());
+    allComponents.forEach((compo) =>
+      compo.set({
+        draggable: true,
+        removable: true,
+        copyable: true,
+        toolbar: [
+          { attributes: { class: "fa-solid fa-arrow-up" }, command: "select-parent" },
+          { attributes: { class: "fa-solid fa-arrows-up-down-left-right" }, command: "tlb-move" },
+          { attributes: { class: "fa-regular fa-copy" }, command: "tlb-clone" },
+          { attributes: { class: "fa-solid fa-trash" }, command: "tlb-delete" },
+        ],
+      })
+    );
+  });
 };
 
 export default plugin;
