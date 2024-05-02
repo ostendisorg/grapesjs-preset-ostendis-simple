@@ -4,7 +4,8 @@
   "description": "GrapesJS preset configuration for the Ostendis editor",
   "main": "dist/grapesjs-preset-ostendis-simple.min.js",
   "files": [
-    "dist/"
+    "dist/",
+    "style/"
   ],
   "scripts": {
     "v:patch": "npm version --no-git-tag-version patch",
