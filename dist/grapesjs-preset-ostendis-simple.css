@@ -452,9 +452,6 @@ div.gjs-hover {
   color: #657390; }
 
 /* Ostendis Block Traits */
-.gjs-trt-trait__wrp-data-ost-type {
-  background: rgba(255, 130, 0, 0.4); }
-
 .gjs-select-option-ok {
   background-color: #b9ffb2;
   color: darkgreen; }

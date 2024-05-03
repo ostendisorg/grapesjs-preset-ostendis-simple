@@ -38,7 +38,7 @@ export default (editor: Editor, opts: Required<PluginOptions>) => {
 
       if (elInput !== null) {
         let element = elInput.querySelector("#" + [traitName]) as HTMLSelectElement;
-        updateTrait(element);      
+        updateTrait(element);
 
         // Set select
         const dataOstType = component.getAttributes()[traitName] || "";
@@ -79,7 +79,6 @@ export default (editor: Editor, opts: Required<PluginOptions>) => {
   });
 
   function updateTrait(element: HTMLSelectElement) {
-
     // Set Array to 0
     opts.usedOstBlocks.forEach((el) => {
       el.count = 0;
@@ -99,7 +98,7 @@ export default (editor: Editor, opts: Required<PluginOptions>) => {
       }
     });
 
-    // Display update select input 
+    // Display update select input
     Array.from(element.options).forEach(function (optionElement, optionIndex) {
       if (optionElement.value != "") {
         const usedOstBlockIndex = opts.usedOstBlocks.findIndex((e) => e.name === optionElement.value);
@@ -114,11 +113,12 @@ export default (editor: Editor, opts: Required<PluginOptions>) => {
           if (opts.usedOstBlocks[usedOstBlockIndex].count == 1) {
             optionEl.innerHTML = "(&#10003;) " + optionEl.text;
             optionEl.classList.add("gjs-select-option-ok");
+            optionEl.disabled = true;
           } else if (opts.usedOstBlocks[usedOstBlockIndex].count > 1) {
             optionEl.innerHTML = "(! " + opts.usedOstBlocks[usedOstBlockIndex].count + "&times;) " + optionEl.text;
             optionEl.classList.add("gjs-select-option-nok");
+            optionEl.disabled = true;
           }
-          optionEl.disabled = true;
         }
       }
     });

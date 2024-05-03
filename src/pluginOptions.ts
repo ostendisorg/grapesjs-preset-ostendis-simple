@@ -82,14 +82,11 @@ export default interface PluginOptions {
    * Ostendis blocks
    */
   usedOstBlocks?: {
-    name: string,
-    count: number
+    name: string;
+    count: number;
   }[];
-
 }
 
 export type OstTranslations = {
   [key: string]: string;
 };
-
-
