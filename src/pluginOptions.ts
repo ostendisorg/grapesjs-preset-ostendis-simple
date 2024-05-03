@@ -14,11 +14,6 @@ export default interface PluginOptions {
   block?: (blockId: string) => {};
 
   /**
-   * Which OST blocks are in use.
-   */
-  usedOstBlockTypes?: string[];
-
-  /**
    * Import command id.
    * @default 'gjs-open-import-template'
    */
@@ -82,8 +77,19 @@ export default interface PluginOptions {
    * Ostendis translations
    */
   t9n?: OstTranslations;
+
+  /**
+   * Ostendis blocks
+   */
+  usedOstBlocks?: {
+    name: string,
+    count: number
+  }[];
+
 }
 
 export type OstTranslations = {
   [key: string]: string;
 };
+
+

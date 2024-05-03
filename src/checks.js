@@ -17,27 +17,33 @@ export function checkOstBlocks(editor, usedOstBlockTypes){
     });
 }
 
-export function alertOstBlocks(defaults){
+// export function alertOstBlocks(defaults){
 
-    var ostBlocksWithError = "";
-    defaults.usedOstBlockTypes.forEach(el => { 
-        if(el.type != "" && el.count > 1){
-            var type = el.type;
-            type = type.replace(/[A-Z]/g, " $&");
-            type = type[0].toUpperCase() + type.slice(1);
-            ostBlocksWithError += `<li>${type} (${el.count}&times;)</li>`;
-        } 
-    });
+//     var ostBlocksWithError = "";
+//     defaults.usedOstBlockTypes.forEach(el => { 
+//         if(el.type != "" && el.count > 1){
+//             var type = el.type;
+//             type = type.replace(/[A-Z]/g, " $&");
+//             type = type[0].toUpperCase() + type.slice(1);
+//             ostBlocksWithError += `<li>${type} (${el.count}&times;)</li>`;
+//         } 
+//     });
 
-    const alertMsg = `<div class='files'>
-                        <p>${defaults.ostBlocksModalWarningText}</p>
-                        <ul>${ostBlocksWithError}</ul>
-                      </div>
-                      <button class='ok' data-close-modal=''>ok</button>`; 
+//     const alertMsg = `<div class='files'>
+//                         <p>${defaults.ostBlocksModalWarningText}</p>
+//                         <ul>${ostBlocksWithError}</ul>
+//                       </div>
+//                       <button class='ok' data-close-modal=''>ok</button>`; 
 
-    defaults.editor.Modal.open({
-        title : defaults.ostBlocksModalWarningTitle,
-        content: alertMsg,
-        attributes: { class: 'alertModalOstBlocks' },
-    });
-}
+//     defaults.editor.Modal.open({
+//         title : defaults.ostBlocksModalWarningTitle,
+//         content: alertMsg,
+//         attributes: { class: 'alertModalOstBlocks' },
+//     });
+// }
+
+
+[
+    {'name' : string},
+    {'count': number}
+]

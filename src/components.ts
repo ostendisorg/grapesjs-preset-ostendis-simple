@@ -1,9 +1,10 @@
 import type { Editor } from "grapesjs";
 import PluginOptions from "./pluginOptions";
+//import {ostTypeTextTrait, ostTypeHideInSimpleHtmlTrait} from './consts';
 
 export default (editor: Editor, opts: Required<PluginOptions>) => {
   const { DomComponents } = editor;
-
+  
   // Define ostendis type trait for text and default components
   const ostTypeTextTrait = {
     type: "ost-blocks-select",
@@ -67,6 +68,7 @@ export default (editor: Editor, opts: Required<PluginOptions>) => {
     valueTrue: "1",
     valueFalse: "",
   };
+  
   // Scale the new range
   DomComponents.addType("scale", {
     isComponent: (el) => el.tagName === "DIV" && el.classList.contains("scale"),
@@ -98,7 +100,7 @@ export default (editor: Editor, opts: Required<PluginOptions>) => {
             placeholder: "#cccccc",
             changeProp: true,
           },
-          ostTypeHideInSimpleHtmlTrait,
+          ostTypeHideInSimpleHtmlTrait, 
         ],
       },
       init() {

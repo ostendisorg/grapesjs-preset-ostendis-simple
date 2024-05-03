@@ -20,7 +20,7 @@ const plugin: Plugin<PluginOptions> = async (editor, opts: Partial<PluginOptions
     cmdInlineHtml: "gjs-get-inlined-html",
     codeViewerTheme: "hopscotch",
     juiceOpts: {},
-    usedOstBlockTypes: [],
+    usedOstBlocks: [],
     inlineCss: true,
     updateStyleManager: true,
     showStylesOnChange: true,
