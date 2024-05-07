@@ -14,11 +14,11 @@
   box-shadow: none; }
 
 .gjs-four-color {
-  color: #FF8200; }
+  color: #ff8200; }
 
 .gjs-color-warn {
-  color: #FF8200;
-  fill: #FF8200;
+  color: #ff8200;
+  fill: #ff8200;
   text-decoration: line-through; }
 
 .gjs-radio-item input:checked + .gjs-radio-item-label {
@@ -363,7 +363,7 @@ div.gjs-hover {
   border-radius: 5px;
   box-shadow: 0 0 11px rgba(0, 0, 0, 0.5); }
   .alert-msg .header {
-    background-color: #FF8200;
+    background-color: #ff8200;
     color: #ffffff;
     padding: 15px;
     border-top-left-radius: 5px;
@@ -410,7 +410,7 @@ div.gjs-hover {
   border-radius: 5px; }
 
 .gjs-mdl-container.alertModalOstBlocks .gjs-mdl-header {
-  background-color: #FF8200;
+  background-color: #ff8200;
   color: #ffffff;
   border: none;
   border-top-left-radius: 5px;
