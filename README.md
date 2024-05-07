@@ -10,16 +10,16 @@ TODO
 
 Download using one of the options:
 
-* `npm i grapesjs-preset-ostendis-simple`
-* Latest release link https://github.com/ostendisorg/grapesjs-preset-ostendis-simple/releases
-
+- `npm i grapesjs-preset-ostendis-simple`
+- Latest release link https://github.com/ostendisorg/grapesjs-preset-ostendis-simple/releases
 
 ## Usage
 
 Directly in the browser
+
 ```html
-<link href="path/to/grapes.min.css" rel="stylesheet"/>
-<link href="path/to/grapesjs-preset-ostendis-simple.css" rel="stylesheet"/>
+<link href="path/to/grapes.min.css" rel="stylesheet" />
+<link href="path/to/grapesjs-preset-ostendis-simple.css" rel="stylesheet" />
 
 <script src="path/to/grapes.min.js"></script>
 <script src="path/to/grapesjs-preset-ostendis-simple.min.js"></script>
@@ -28,18 +28,19 @@ Directly in the browser
 
 <script type="text/javascript">
   var editor = grapesjs.init({
-      container : '#gjs',
-      plugins: ['grapesjs-preset-ostendis-simple'],
-      pluginsOpts: {
-        'grapesjs-preset-ostendis-simple': {
-          // options
-        }
-      }
+    container: "#gjs",
+    plugins: ["grapesjs-preset-ostendis-simple"],
+    pluginsOpts: {
+      "grapesjs-preset-ostendis-simple": {
+        // options
+      },
+    },
   });
 </script>
 ```
 
 Modern javascript
+
 ```js
 import grapesjs from 'grapesjs';
 import plugin from 'grapesjs-preset-ostendis-simple';
@@ -88,6 +89,7 @@ $ npm run build
 ## Release
 
 To install publishing dependency
+
 ```sh
 $ npm install --global np
 ```
@@ -97,6 +99,7 @@ Publish the package
 ```sh
 $ npm run release
 ```
+
 **ONLY** workes with package:
 https://www.npmjs.com/package/np
 
