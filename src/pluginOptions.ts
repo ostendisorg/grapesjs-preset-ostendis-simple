@@ -32,22 +32,10 @@ export default interface PluginOptions {
   inlineCss?: boolean;
 
   /**
-   * Update Style Manager with more reliable style properties to use for newsletters.
-   * @default true
-   */
-  updateStyleManager?: boolean;
-
-  /**
    * Show the Style Manager on component change.
    * @default true
    */
   showStylesOnChange?: boolean;
-
-  /**
-   * Show the Block Manager on load.
-   * @default true
-   */
-  showBlocksOnLoad?: boolean;
 
   /**
    * Show the Traits Manager on load.
