@@ -30,7 +30,8 @@
     "grapesjs": "^0.21.2",
     "grapesjs-cli": "^4.1.1",
     "jest": "^29.4.1",
-    "juice": "^8.1.0"
+    "juice": "^8.1.0",
+    "node-sass": "^9.0.0"
   },
   "babel": {
     "env": {
@@ -46,8 +47,5 @@
     "modulePaths": [
       "./src"
     ]
-  },
-  "dependencies": {
-    "node-sass": "^9.0.0"
   }
 }
