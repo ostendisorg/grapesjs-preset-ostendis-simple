@@ -1,4 +1,7 @@
 {
   "extends": "./node_modules/grapesjs-cli/dist/template/tsconfig.json",
-  "include": ["src"]
+  "include": ["src"],
+  "compilerOptions": {
+    "types": ["node"]
+  }
 }
