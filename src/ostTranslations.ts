@@ -1,7 +1,30 @@
 import type { OstTranslations } from "./pluginOptions";
 
 export const ostTrans: OstTranslations = {
-  traitBlkValue: "",
+  cmdBtnDesktopLabel: "Desktop",
+  cmdBtnTabletLabel: "Tablet",
+  cmdBtnMobileLabel: "Mobile",
+
+  cmdBtnViewCompLabel: "View components",
+  cmdBtnUndoLabel: "Undo",
+  cmdBtnRedoLabel: "Redo",
+  
+  openTraits: "Open Parameter",
+  
+  categoryLabel: "Basic",
+  smSitesCategoryLabel: "Social media sites",
+  smSharesCategoryLabel: "Social media shares",
+  sharesCategoryLabel: "Shares",
+    
+  traitBlkValue: "Value",  
+
+  traitHeaderLabel: "Header Level",
+  traitHeaderSelectH1: "H1 (highest)",
+  traitHeaderSelectH2: "H2",
+  traitHeaderSelectH3: "H3",
+  traitHeaderSelectH4: "H4",
+  traitHeaderSelectH5: "H5",
+  traitHeaderSelectH6: "H6 (lowest)",
 
   traitBlkOstendisTooltip: "Define Ostendis block.",
   traitOstNone: "None",
@@ -20,6 +43,7 @@ export const ostTrans: OstTranslations = {
   traitOstContactHeading: "Contact Heading",
   traitOstContact: "Contact",
   traitOstCallToAction: "Call to action",
+
   traitOstLogoPicURL: "Logo Image",
   traitOstHeaderPic1URL: "Header Image 1",
   traitOstHeaderPic2URL: "Header Image 2",
@@ -34,21 +58,6 @@ export const ostTrans: OstTranslations = {
 
   hideInSimpleHtmlLabel: "Hide",
   hideInSimpleHtmlTooltip: "Hide element in simple HTML (jobs.ch)",
-
-  ostToolbarClone: "Clone list element",
-  ostToolbarDelete: "Delete list element",
-  ostToolbarUp: "Move list element up",
-  ostToolbarDown: "Move list element down",
-
-  cmdBtnDesktopLabel: "Desktop",
-  cmdBtnTabletLabel: "Tablet",
-  cmdBtnMobileLabel: "Mobile",
-  cmdBtnViewCompLabel: "View components",
-  cmdBtnUndoLabel: "Undo",
-  cmdBtnRedoLabel: "Redo",
-  openTmBtnTitle: "Open Parameter",
-
-  cmdRteRemoveFormat: "Remove format",
 
   labelIconTooltip: "For more icons: change class name in style manager.",
   labelIconSelectMinus: "minus",
@@ -73,4 +82,14 @@ export const ostTrans: OstTranslations = {
   labelIconSelectPhone: "phone",
   labelIconSelectEnvelope: "envelope",
   labelIconSelectStar: "star",
+
+  labelScalePercent: "Percent",
+  labelScaleBarColor: "Color 1",
+  labelScaleBgColor: "Color 2",
+
+  ostToolbarClone: "Clone list element",
+  ostToolbarDelete: "Delete list element",
+  ostToolbarUp: "Move list element up",
+  ostToolbarDown: "Move list element down",
+  cmdRteRemoveFormat: "Remove format",
 };

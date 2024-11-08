@@ -12,6 +12,7 @@
   content: attr(data-tooltip);
   display: block;
   font-size: 12px;
+  font-weight: 400;
   left: 50%;
   line-height: normal;
   max-width: 32rem;
