@@ -1,6 +1,6 @@
 {
   "name": "grapesjs-preset-ostendis-simple",
-  "version": "1.0.10",
+  "version": "1.0.13",
   "description": "GrapesJS preset configuration for the Ostendis editor",
   "main": "dist/grapesjs-preset-ostendis-simple.min.js",
   "files": [
@@ -10,8 +10,10 @@
   "scripts": {
     "v:patch": "npm version --no-git-tag-version patch",
     "start": "grapesjs-cli serve",
-    "build": "grapesjs-cli build",
-    "build:css": "node-sass src/style/main.scss dist/grapesjs-preset-ostendis-simple.css",
+    "build": "npm run build:js && npm run build:css",
+    "build:js": "grapesjs-cli build",
+    "build:css": "sass --no-source-map --style=compressed src/style/main.scss:dist/grapesjs-preset-ostendis-simple.css",
+    "build:css:dev": "sass --source-map --style=expanded src/style/main.scss:dist/grapesjs-preset-ostendis-simple.css",
     "test": "jest --passWithNoTests",
     "release": "npm run build && np"
   },
@@ -31,7 +33,7 @@
     "grapesjs-cli": "^4.1.1",
     "jest": "^29.4.1",
     "juice": "^8.1.0",
-    "node-sass": "^9.0.0"
+    "sass": "^1.80.6"
   },
   "babel": {
     "env": {
