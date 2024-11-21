@@ -9,12 +9,19 @@ export default (editor: Editor, opts: Required<PluginOptions>) => {
     createInput({ trait }) {
       const traitOpts = trait.get("options") || [];
       const traitName = trait.get("name") || "ost-block-select";
-      const options = traitOpts.length ? traitOpts : [{ id: "", name: "None", disabled: "disabled" }];
+      const options = traitOpts.length
+        ? traitOpts
+        : [{ id: "", name: "None", disabled: "disabled" }];
 
       const el = document.createElement("div");
       el.innerHTML = `
         <select class="ost-blocks-select" id="${traitName}">
-          ${options.map((opt) => `<option value="${opt.id}" ${opt.disabled}>${opt.name}</option>`).join("")}
+          ${options
+            .map(
+              (opt) =>
+                `<option value="${opt.id}" ${opt.disabled}>${opt.name}</option>`
+            )
+            .join("")}
         </select>
         <div class="gjs-sel-arrow">
           <div class="gjs-d-s-arrow"></div>
@@ -23,7 +30,9 @@ export default (editor: Editor, opts: Required<PluginOptions>) => {
     },
     onEvent({ elInput, component, trait }) {
       const traitName = trait.get("name") || "ost-block-select-default";
-      let element = elInput.querySelector("#" + [traitName]) as HTMLSelectElement;
+      let element = elInput.querySelector(
+        "#" + [traitName]
+      ) as HTMLSelectElement;
       const dataOstType = element.value;
 
       if (dataOstType == "") {
@@ -37,7 +46,9 @@ export default (editor: Editor, opts: Required<PluginOptions>) => {
       const traitName = trait.get("name") || "ost-block-select-default";
 
       if (elInput !== null) {
-        let element = elInput.querySelector("#" + [traitName]) as HTMLSelectElement;
+        let element = elInput.querySelector(
+          "#" + [traitName]
+        ) as HTMLSelectElement;
         updateTrait(element);
 
         // Set select
@@ -101,7 +112,9 @@ export default (editor: Editor, opts: Required<PluginOptions>) => {
     // Display update select input
     Array.from(element.options).forEach(function (optionElement, optionIndex) {
       if (optionElement.value != "") {
-        const usedOstBlockIndex = opts.usedOstBlocks.findIndex((e) => e.name === optionElement.value);
+        const usedOstBlockIndex = opts.usedOstBlocks.findIndex(
+          (e) => e.name === optionElement.value
+        );
 
         // Reset
         var optionEl = element.options[optionIndex];
@@ -115,7 +128,11 @@ export default (editor: Editor, opts: Required<PluginOptions>) => {
             optionEl.classList.add("gjs-select-option-ok");
             optionEl.disabled = true;
           } else if (opts.usedOstBlocks[usedOstBlockIndex].count > 1) {
-            optionEl.innerHTML = "(! " + opts.usedOstBlocks[usedOstBlockIndex].count + "&times;) " + optionEl.text;
+            optionEl.innerHTML =
+              "(! " +
+              opts.usedOstBlocks[usedOstBlockIndex].count +
+              "&times;) " +
+              optionEl.text;
             optionEl.classList.add("gjs-select-option-nok");
             optionEl.disabled = true;
           }

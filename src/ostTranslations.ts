@@ -8,15 +8,15 @@ export const ostTrans: OstTranslations = {
   cmdBtnViewCompLabel: "View components",
   cmdBtnUndoLabel: "Undo",
   cmdBtnRedoLabel: "Redo",
-  
+
   openTraits: "Open Parameter",
-  
+
   categoryLabel: "Basic",
   smSitesCategoryLabel: "Social media sites",
   smSharesCategoryLabel: "Social media shares",
   sharesCategoryLabel: "Shares",
-    
-  traitBlkValue: "Value",  
+
+  traitBlkValue: "Value",
 
   traitHeaderLabel: "Header Level",
   traitHeaderSelectH1: "H1 (highest)",
