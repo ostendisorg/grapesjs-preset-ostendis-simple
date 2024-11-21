@@ -80,7 +80,7 @@ const plugin: Plugin<PluginOptions> = async (
         showOstToolbar(selected.closestType("ulistitem"));
       } else if (selected.getEl()?.tagName === "LI") {
         //If list element is empty replace with placeholder text (M&E case:)
-        if (selected.components().length == 0) {
+        if (selected.components().length === 0 && !selected.get("content")) {
           var selectedPosition = selected.index();
           var newComponent = selected
             .parent()
