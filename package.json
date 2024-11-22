@@ -11,7 +11,7 @@
     "v:patch": "npm version --no-git-tag-version patch",
     "start": "grapesjs-cli serve",
     "build": "npm run build:js && npm run build:css",
-    "build:js": "grapesjs-cli build",
+    "build:js": "grapesjs-cli build --patch=false",
     "build:css": "sass --no-source-map --style=compressed src/style/main.scss:dist/grapesjs-preset-ostendis-simple.css",
     "build:css:dev": "sass --source-map --style=expanded src/style/main.scss:dist/grapesjs-preset-ostendis-simple.css",
     "test": "jest --passWithNoTests",
