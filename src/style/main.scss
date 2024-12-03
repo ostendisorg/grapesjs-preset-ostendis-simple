@@ -257,6 +257,10 @@ div.#{gjs_vars.$app-prefix}hover {
 
 .#{gjs_vars.$app-prefix}mdl-dialog .#{gjs_vars.$app-prefix}btn-import {
   margin-top: 10px;
+  background-color: gjs_vars.$mainColor;
+  color: gjs_vars.$whiteColor;
+  padding-inline: 15px;
+  margin-left: auto;
 }
 
 .CodeMirror {
@@ -568,7 +572,15 @@ div.#{gjs_vars.$app-prefix}hover {
   border-color: gjs_vars.$mainColor;
   color: gjs_vars.$fontColor;
 }
+/* Traits */
+.#{gjs_vars.$app-prefix}trt-trait {
+  padding: 10px;
+  flex-wrap: wrap;
 
+  .#{gjs_vars.$app-prefix}label-wrp {
+    width: 100%;
+  }
+}
 /* Ostendis Block Traits */
 .#{gjs_vars.$app-prefix}select-option-ok {
   background-color: rgb(185, 255, 178);
