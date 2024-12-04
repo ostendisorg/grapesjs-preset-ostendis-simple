@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <title>GrapesJS Ostendis Editor Simple</title>
+    <title>Simple GrapesJS Ostendis Editor</title>
 
     <link
       href="https://cdnjs.cloudflare.com/ajax/libs/grapesjs/0.22.3/css/grapes.min.css"
@@ -752,7 +752,7 @@
           height: "100%",
           storageManager: false,
           richTextEditor: {
-            actions: ["bold", "italic", "underline", "link"],
+            actions: ["bold", "italic", "underline", "link"], // command removeFormat
             onPaste: ({ ev, rte }) => {
               ev.preventDefault();
               const { clipboardData } = ev;
