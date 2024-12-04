@@ -174,16 +174,20 @@ export default (editor: Editor, opts: Required<PluginOptions>) => {
     isComponent: (el) => {
       const headings = ["h1", "h2", "h3", "h4", "h5", "h6"];
       if (el.tagName && headings.includes(el.tagName.toLowerCase())) {
-        return { type: "header"};
+        return { type: "header" };
       }
     },
     extend: "text",
     model: {
       defaults: {
         tagName: "h1", //Default
-        traits: ["id", ostTypeTextTrait(opts), ostTypeHideInSimpleHtmlTrait(opts)],
+        traits: [
+          "id",
+          ostTypeTextTrait(opts),
+          ostTypeHideInSimpleHtmlTrait(opts),
+        ],
       },
-    }
+    },
   });
   // Icon component
   DomComponents.addType("icon", {
@@ -247,6 +251,7 @@ export default (editor: Editor, opts: Required<PluginOptions>) => {
     model: {
       defaults: {
         traits: [
+          "id",
           "alt",
           ostTypeImageTrait(opts),
           ostTypeHideInSimpleHtmlTrait(opts),
