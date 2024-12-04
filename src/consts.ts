@@ -1,8 +1,29 @@
 import PluginOptions from "./pluginOptions";
+import { ostTrans } from "./ostTranslations";
 
 export const cmdDeviceDesktop = "set-device-desktop";
 export const cmdDeviceTablet = "set-device-tablet";
 export const cmdDeviceMobile = "set-device-mobile";
+
+export const nameTrait = {
+  name: "name",
+};
+
+export const valueTrait = {
+  name: "value",
+  label: ostTrans.traitBlkValue,
+};
+
+export const uListItemContent = `
+    <span class="fa-li" style="left:-2em;width:2em;" draggable="false" removable="false" editable="false" copyable="false">
+      <i class="fas fa-circle" data-gjs-type="icon" style="font-size:0.4em;line-height:inherit;display:block;" draggable="false" removable="false" editable="false" copyable="false"></i>
+    </span>
+    <p style="margin:0;padding:0;text-align:left;" draggable="false" removable="false" copyable="false">Text</p>`;
+
+export const ulListItem =
+  `<li style="text-align:left" data-gjs-type="ulistitem">` +
+  uListItemContent +
+  `</li>`;
 
 // Define ostendis type trait for text and default components
 export function ostTypeTextTrait(opts: Required<PluginOptions>) {
