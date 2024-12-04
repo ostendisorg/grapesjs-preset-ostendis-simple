@@ -53,7 +53,7 @@ export default (editor: Editor, opts: Required<PluginOptions>) => {
           ],
         });
 
-        this.set({ tagName }, { silent: 1 }); // avoid break in view
+        this.set({ tagName }, { silent: true }); // avoid break in view
         this.set({ traits });
         em.get("ready") && em.trigger("component:toggled");
       },
