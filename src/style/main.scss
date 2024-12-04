@@ -190,6 +190,7 @@ div.#{gjs_vars.$app-prefix}hover {
 .#{gjs_vars.$app-prefix}pn-panel,
 .#{gjs_vars.$app-prefix}block,
 .#{gjs_vars.$app-prefix}select option,
+.#{gjs_vars.$app-prefix}field-select option,
 .#{gjs_vars.$app-prefix}sm-sector .#{gjs_vars.$app-prefix}sm-colorp-c,
 .#{gjs_vars.$app-prefix}sm-select option,
 .#{gjs_vars.$app-prefix}sm-unit option,
@@ -581,21 +582,21 @@ div.#{gjs_vars.$app-prefix}hover {
   }
 }
 /* Ostendis Block Traits */
-.#{gjs_vars.$app-prefix}select-option-ok {
+.#{gjs_vars.$app-prefix}select-option-ok,
+.#{gjs_vars.$app-prefix}select-option-ok:checked {
   background-color: rgb(185, 255, 178);
   color: rgb(0, 100, 0);
 }
-.#{gjs_vars.$app-prefix}select-option-nok {
+.#{gjs_vars.$app-prefix}select-option-nok,
+.#{gjs_vars.$app-prefix}select-option-nok:checked {
   background-color: rgb(255, 179, 179);
   color: rgb(104, 0, 0);
 }
-
 /* Scale Trait Color Picker */
 .#{gjs_vars.$app-prefix}trt-traits .sp-container {
   top: 30px !important;
   left: -200px !important;
 }
-
 /* animation */
 @keyframes spin {
   0% {
