@@ -87,6 +87,7 @@ export default (editor: Editor, opts: Required<PluginOptions>) => {
         {
           id: openTraits,
           command: openTraits,
+          togglable: false,
           className: "fa-solid fa-gear",
           attributes: {
             "data-tooltip": opts.t9n.openTraits,
