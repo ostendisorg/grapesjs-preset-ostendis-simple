@@ -43,16 +43,16 @@ const plugin: Plugin<PluginOptions> = async (
   await loadRte(editor, options);
 
   // Beautify tooltips
-  var titles = document.querySelectorAll("*[data-tooltip-pos]");
+  // var titles = document.querySelectorAll("*[data-tooltip-pos]");
 
-  for (var i = 0; i < titles.length; i++) {
-    var el = titles[i];
-    var title = el.getAttribute("title");
-    title = title ? title.trim() : "";
-    if (!title) break;
-    el.setAttribute("data-tooltip", title);
-    el.setAttribute("title", "");
-  }
+  // for (var i = 0; i < titles.length; i++) {
+  //   var el = titles[i];
+  //   var title = el.getAttribute("title");
+  //   title = title ? title.trim() : "";
+  //   if (!title) break;
+  //   el.setAttribute("data-tooltip", title);
+  //   el.setAttribute("title", "");
+  // }
 
   // On load
   editor.on("load", () => {
@@ -61,6 +61,19 @@ const plugin: Plugin<PluginOptions> = async (
     const ostTools = document.createElement("div");
     ostTools.classList.add("gjs-ost-toolbar");
     tools?.append(ostTools);
+
+    // Beautify tooltips
+    var titles = document.querySelectorAll("*[data-tooltip-pos]");
+
+    for (var i = 0; i < titles.length; i++) {
+      var el = titles[i];
+      var title = el.getAttribute("title");
+      title = title ? title.trim() : "";
+      console.log("Beautify tooltips: ", title);
+      if (!title) break;
+      el.setAttribute("data-tooltip", title);
+      el.setAttribute("title", "");
+    }
   });
 
   // On selected components
@@ -68,10 +81,10 @@ const plugin: Plugin<PluginOptions> = async (
     let selected = editor.getSelected();
 
     if (selected != undefined) {
-      selected.addAttributes({
-        draggable: "false",
-        removable: "false",
-        copyable: "false",
+      selected.set({
+        draggable: false,
+        removable: false,
+        copyable: false,
       });
 
       if (selected.is("ulistitem")) {
