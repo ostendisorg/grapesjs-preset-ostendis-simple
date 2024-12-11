@@ -42,18 +42,6 @@ const plugin: Plugin<PluginOptions> = async (
   loadPanels(editor, options);
   await loadRte(editor, options);
 
-  // Beautify tooltips
-  // var titles = document.querySelectorAll("*[data-tooltip-pos]");
-
-  // for (var i = 0; i < titles.length; i++) {
-  //   var el = titles[i];
-  //   var title = el.getAttribute("title");
-  //   title = title ? title.trim() : "";
-  //   if (!title) break;
-  //   el.setAttribute("data-tooltip", title);
-  //   el.setAttribute("title", "");
-  // }
-
   // On load
   editor.on("load", () => {
     // Create ostendis toolbar
@@ -61,19 +49,6 @@ const plugin: Plugin<PluginOptions> = async (
     const ostTools = document.createElement("div");
     ostTools.classList.add("gjs-ost-toolbar");
     tools?.append(ostTools);
-
-    // Beautify tooltips
-    var titles = document.querySelectorAll("*[data-tooltip-pos]");
-
-    for (var i = 0; i < titles.length; i++) {
-      var el = titles[i];
-      var title = el.getAttribute("title");
-      title = title ? title.trim() : "";
-      console.log("Beautify tooltips: ", title);
-      if (!title) break;
-      el.setAttribute("data-tooltip", title);
-      el.setAttribute("title", "");
-    }
   });
 
   // On selected components
