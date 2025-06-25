@@ -22,7 +22,7 @@ const plugin: Plugin<PluginOptions> = async (
     usedOstBlocks: [],
     cmdOpenImport: "gjs-open-import-template",
     codeViewerTheme: "hopscotch",
-    inlineCss: false,
+    inlineCss: true,
     showStylesOnChange: true,
     showTraitsOnLoad: true,
     showOutlineOnLoad: true,
