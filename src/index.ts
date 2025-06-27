@@ -181,25 +181,6 @@ const plugin: Plugin<PluginOptions> = async (
 
       // Add show
       ostToolbar.classList.add("show");
-
-      const toolbarRect = ostToolbar.getBoundingClientRect();
-      const listItemEl = listItem?.getEl();
-      const listItemElRect = listItemEl?.getBoundingClientRect();
-
-      const viewportWidth = window.innerWidth;
-
-      console.log("Toolbar Rect:", toolbarRect);
-      console.log("Viewport Width:", viewportWidth);
-      console.log(listItemElRect);
-      //console.log("viewportWidht : ", viewportWidth);
-      console.log("x:", toolbarRect.x);
-      if (toolbarRect.x <= 10) {
-        ostToolbar.style.right = "auto";
-        ostToolbar.style.left = "0";
-      } else {
-        ostToolbar.style.right = "0";
-        ostToolbar.style.left = "auto";
-      }
     }
   }
 
