@@ -63,15 +63,24 @@ export default (editor: Editor, opts: Required<PluginOptions>) => {
 
   // Scale the new range
   DomComponents.addType("scale", {
-    isComponent: (el) => el.tagName === "DIV" && el.classList.contains("scale"),
+    isComponent: (el) => {
+      return (
+        el.tagName === "DIV" &&
+        (el.getAttribute("data-scale") === "true" ||
+          el.classList.contains("scale"))
+      );
+    },
+
     model: {
       defaults: {
         tagName: "div",
         attributes: {
-          class: "scale",
+          "data-scale": "true",
           "data-percent": "66",
           "data-fcolor": "#3b5998",
           "data-bgcolor": "#CCCCCC",
+          "aria-label": "66 %",
+          role: "img",
         },
         style: {
           "box-sizing": "border-box",
@@ -79,7 +88,7 @@ export default (editor: Editor, opts: Required<PluginOptions>) => {
           height: "20px",
           "max-width": "100%",
           border: "0px solid #666666",
-          background: "linear-gradient(to right,#3b5998 66%, #CCCCCC 66%);",
+          background: "linear-gradient(to right, #3b5998 66%, #CCCCCC 66%)",
         },
         traits: [
           {
@@ -107,36 +116,46 @@ export default (editor: Editor, opts: Required<PluginOptions>) => {
           ostTypeHideInSimpleHtmlTrait(opts),
         ],
       },
+
       init() {
-        const scaleAttr = this.getAttributes();
-        this.set("percent", scaleAttr["data-percent"]);
-        this.set("bgcolor", scaleAttr["data-bgcolor"]);
-        this.set("fcolor", scaleAttr["data-fcolor"]);
+        const attr = this.getAttributes();
+        const el = this.view?.el;
+
+        let p = parseInt(attr["data-percent"]);
+        let f = attr["data-fcolor"];
+        let b = attr["data-bgcolor"];
+
+        if (isNaN(p)) p = 66;
+        if (!f) f = "#3b5998";
+        if (!b) b = "#CCCCCC";
+
+        this.set("percent", Math.max(0, Math.min(100, p)));
+        this.set("bgcolor", b);
+        this.set("fcolor", f);
 
         this.on("change:percent", this.updateScale);
         this.on("change:bgcolor", this.updateScale);
         this.on("change:fcolor", this.updateScale);
       },
+
       updateScale() {
-        var p = this.get("percent");
-        var b = this.get("bgcolor");
-        var f = this.get("fcolor");
+        let p = parseInt(this.get("percent"));
+        const f = this.get("fcolor") || "#3b5998";
+        const b = this.get("bgcolor") || "#CCCCCC";
+
+        if (isNaN(p)) p = 0;
+        p = Math.max(0, Math.min(100, p));
+
         this.set("attributes", {
+          "data-scale": "true",
           "data-percent": p,
-          "data-bgcolor": b,
           "data-fcolor": f,
+          "data-bgcolor": b,
+          "aria-label": `${p} %`,
         });
+
         this.addStyle({
-          background:
-            "linear-gradient(to right, " +
-            f +
-            " " +
-            p +
-            "%, " +
-            b +
-            " " +
-            p +
-            "%)",
+          background: `linear-gradient(to right, ${f} ${p}%, ${b} ${p}%)`,
         });
       },
     },
