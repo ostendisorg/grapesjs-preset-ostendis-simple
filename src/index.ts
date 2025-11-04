@@ -78,6 +78,50 @@ const plugin: Plugin<PluginOptions> = async (
         showOstToolbar(selected);
       } else if (isChildOfElement(selected.getEl(), "LI")) {
         showOstToolbar(selected.closest("li"));
+      } else if (selected.getEl()?.tagName === "UL") {
+        // UL is selected - show built-in toolbar with paste button
+        const ulToolbar = [
+          {
+            attributes: { class: "fa-solid fa-paste" },
+            command: "paste-from-word",
+          },
+        ];
+
+        selected.set({
+          toolbar: ulToolbar,
+        });
+
+        // Hide OST toolbar for UL elements
+        var ostToolbar = document.querySelector(".gjs-ost-toolbar");
+        ostToolbar?.classList.remove("show");
+      } else {
+        // For other elements, show default toolbar without paste button
+        const defaultToolbar = [
+          {
+            attributes: { class: "fa-solid fa-arrow-up" },
+            command: "select-parent",
+          },
+          {
+            attributes: { class: "fa-solid fa-arrows-up-down-left-right" },
+            command: "tlb-move",
+          },
+          { 
+            attributes: { class: "fa-regular fa-copy" }, 
+            command: "tlb-clone" 
+          },
+          { 
+            attributes: { class: "fa-solid fa-trash" }, 
+            command: "tlb-delete" 
+          },
+        ];
+
+        selected.set({
+          toolbar: defaultToolbar,
+        });
+
+        // Hide OST toolbar for other elements
+        var ostToolbar = document.querySelector(".gjs-ost-toolbar");
+        ostToolbar?.classList.remove("show");
       }
     }
   });
@@ -193,25 +237,35 @@ const plugin: Plugin<PluginOptions> = async (
       return result;
     };
     var allComponents = getAllComponents(editor.DomComponents.getWrapper());
-    allComponents.forEach((compo) =>
+    allComponents.forEach((compo) => {
+      const defaultToolbar = [
+        {
+          attributes: { class: "fa-solid fa-arrow-up" },
+          command: "select-parent",
+        },
+        {
+          attributes: { class: "fa-solid fa-arrows-up-down-left-right" },
+          command: "tlb-move",
+        },
+        { attributes: { class: "fa-regular fa-copy" }, command: "tlb-clone" },
+        { attributes: { class: "fa-solid fa-trash" }, command: "tlb-delete" },
+      ];
+
+      // Add paste button only for UL elements
+      if (compo.getEl && compo.getEl()?.tagName === "UL") {
+        defaultToolbar.push({
+          attributes: { class: "fa-solid fa-paste" },
+          command: "paste-from-word",
+        });
+      }
+
       compo.set({
         draggable: true,
         removable: true,
         copyable: true,
-        toolbar: [
-          {
-            attributes: { class: "fa-solid fa-arrow-up" },
-            command: "select-parent",
-          },
-          {
-            attributes: { class: "fa-solid fa-arrows-up-down-left-right" },
-            command: "tlb-move",
-          },
-          { attributes: { class: "fa-regular fa-copy" }, command: "tlb-clone" },
-          { attributes: { class: "fa-solid fa-trash" }, command: "tlb-delete" },
-        ],
-      })
-    );
+        toolbar: defaultToolbar,
+      });
+    });
   });
 };
 
