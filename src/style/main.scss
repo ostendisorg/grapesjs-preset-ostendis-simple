@@ -26,9 +26,7 @@
   text-decoration: line-through;
 }
 
-.#{gjs_vars.$app-prefix}radio-item
-  input:checked
-  + .#{gjs_vars.$app-prefix}radio-item-label {
+.#{gjs_vars.$app-prefix}radio-item input:checked + .#{gjs_vars.$app-prefix}radio-item-label {
   color: gjs_vars.$whiteColor;
   background-color: gjs_vars.$mainColor;
 }
@@ -171,20 +169,16 @@ div.#{gjs_vars.$app-prefix}hover {
 #gjs-rte-toolbar .#{gjs_vars.$app-prefix}rte-btn,
 .#{gjs_vars.$app-prefix}btn-prim,
 .#{gjs_vars.$app-prefix}btnt,
-.#{gjs_vars.$app-prefix}clm-tags
-  .#{gjs_vars.$app-prefix}sm-composite.#{gjs_vars.$app-prefix}clm-field,
-.#{gjs_vars.$app-prefix}clm-tags
-  .#{gjs_vars.$app-prefix}sm-field.#{gjs_vars.$app-prefix}sm-composite,
+.#{gjs_vars.$app-prefix}clm-tags .#{gjs_vars.$app-prefix}sm-composite.#{gjs_vars.$app-prefix}clm-field,
+.#{gjs_vars.$app-prefix}clm-tags .#{gjs_vars.$app-prefix}sm-field.#{gjs_vars.$app-prefix}sm-composite,
 .#{gjs_vars.$app-prefix}clm-tags .#{gjs_vars.$app-prefix}sm-stack #gjs-sm-add,
 .#{gjs_vars.$app-prefix}color-main,
 .#{gjs_vars.$app-prefix}mdl-dialog,
 .#{gjs_vars.$app-prefix}off-prv,
 .#{gjs_vars.$app-prefix}pn-btn,
 .#{gjs_vars.$app-prefix}pn-panel,
-.#{gjs_vars.$app-prefix}sm-sector
-  .#{gjs_vars.$app-prefix}sm-composite.#{gjs_vars.$app-prefix}clm-field,
-.#{gjs_vars.$app-prefix}sm-sector
-  .#{gjs_vars.$app-prefix}sm-field.#{gjs_vars.$app-prefix}sm-composite,
+.#{gjs_vars.$app-prefix}sm-sector .#{gjs_vars.$app-prefix}sm-composite.#{gjs_vars.$app-prefix}clm-field,
+.#{gjs_vars.$app-prefix}sm-sector .#{gjs_vars.$app-prefix}sm-field.#{gjs_vars.$app-prefix}sm-composite,
 .#{gjs_vars.$app-prefix}sm-sector .#{gjs_vars.$app-prefix}sm-stack #gjs-sm-add {
   color: gjs_vars.$fontColor;
 }
@@ -238,8 +232,7 @@ div.#{gjs_vars.$app-prefix}hover {
   padding: 5px;
 }
 
-.#{gjs_vars.$app-prefix}ost-toolbar
-  .#{gjs_vars.$app-prefix}ost-toolbar-item.disable {
+.#{gjs_vars.$app-prefix}ost-toolbar .#{gjs_vars.$app-prefix}ost-toolbar-item.disable {
   color: gjs_vars.$white30;
   cursor: inherit;
 }
@@ -385,8 +378,7 @@ div.#{gjs_vars.$app-prefix}hover {
   text-align: center;
 }
 
-.#{gjs_vars.$app-prefix}sm-sector
-  .#{gjs_vars.$app-prefix}sm-property.#{gjs_vars.$app-prefix}sm-list {
+.#{gjs_vars.$app-prefix}sm-sector .#{gjs_vars.$app-prefix}sm-property.#{gjs_vars.$app-prefix}sm-list {
   width: 50%;
 }
 
@@ -394,9 +386,7 @@ div.#{gjs_vars.$app-prefix}hover {
   border-top: none;
 }
 
-.#{gjs_vars.$app-prefix}sm-sector
-  .#{gjs_vars.$app-prefix}sm-property
-  .#{gjs_vars.$app-prefix}sm-layer.#{gjs_vars.$app-prefix}sm-active {
+.#{gjs_vars.$app-prefix}sm-sector .#{gjs_vars.$app-prefix}sm-property .#{gjs_vars.$app-prefix}sm-layer.#{gjs_vars.$app-prefix}sm-active {
   background-color: rgba(255, 255, 255, 0.09);
 }
 
