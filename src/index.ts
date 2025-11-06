@@ -10,6 +10,15 @@ import { ostTrans } from "./ostTranslations";
 
 export type RequiredPluginOptions = Required<PluginOptions>;
 
+type ToolbarButton = {
+  attributes: {
+    class: string;
+    "data-tooltip"?: string;
+    "data-tooltip-pos"?: "bottom",
+  };
+  command: string;
+};
+
 const plugin: Plugin<PluginOptions> = async (
   editor,
   opts: Partial<PluginOptions> = {}
@@ -82,7 +91,11 @@ const plugin: Plugin<PluginOptions> = async (
         // UL is selected - show built-in toolbar with paste button
         const ulToolbar = [
           {
-            attributes: { class: "fa-solid fa-paste" },
+            attributes: {
+              class: "fa-solid fa-file-word",
+              "data-tooltip": options.t9n.ostToolbarPasteFromWord,
+              "data-tooltip-pos": "bottom"
+            },
             command: "paste-from-word",
           },
         ];
@@ -96,7 +109,7 @@ const plugin: Plugin<PluginOptions> = async (
         ostToolbar?.classList.remove("show");
       } else {
         // For other elements, show default toolbar without paste button
-        const defaultToolbar = [
+        const defaultToolbar: ToolbarButton[] = [
           {
             attributes: { class: "fa-solid fa-arrow-up" },
             command: "select-parent",
@@ -238,7 +251,7 @@ const plugin: Plugin<PluginOptions> = async (
     };
     var allComponents = getAllComponents(editor.DomComponents.getWrapper());
     allComponents.forEach((compo) => {
-      const defaultToolbar = [
+      const defaultToolbar: ToolbarButton[] = [
         {
           attributes: { class: "fa-solid fa-arrow-up" },
           command: "select-parent",
@@ -254,7 +267,11 @@ const plugin: Plugin<PluginOptions> = async (
       // Add paste button only for UL elements
       if (compo.getEl && compo.getEl()?.tagName === "UL") {
         defaultToolbar.push({
-          attributes: { class: "fa-solid fa-paste" },
+          attributes: {
+            class: "fa-solid fa-file-word",
+            "data-tooltip": options.t9n.ostToolbarPasteFromWord,
+            "data-tooltip-pos": "bottom"
+          },
           command: "paste-from-word",
         });
       }
