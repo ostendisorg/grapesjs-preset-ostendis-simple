@@ -166,10 +166,6 @@ export default async (editor: Editor, opts: Required<PluginOptions>) => {
                     placeholder="Paste your Word list content here..." 
                     style="width: 100%; height: 300px; padding: 10px; border: 1px solid #ddd; border-radius: 4px; font-family: monospace; font-size: 14px; line-height: 1.4; resize: vertical;"></textarea>
           <div style="margin-top: 20px; display: flex; justify-content: flex-end; gap: 10px;">
-            <button id="word-paste-cancel" 
-                    style="padding: 10px 20px; background: #f8f9fa; color: #495057; border: 1px solid #dee2e6; border-radius: 4px; cursor: pointer; font-size: 14px;">
-              Cancel
-            </button>
             <button id="word-paste-apply" 
                     style="padding: 10px 20px; background: #6c757d; color: white; border: none; border-radius: 4px; cursor: pointer; font-size: 14px;">
               Replace List Content
@@ -184,17 +180,10 @@ export default async (editor: Editor, opts: Required<PluginOptions>) => {
 
             setTimeout(() => {
                 const textarea = document.getElementById('word-paste-content') as HTMLTextAreaElement;
-                const cancelBtn = document.getElementById('word-paste-cancel');
                 const applyBtn = document.getElementById('word-paste-apply');
 
                 if (textarea) {
                     textarea.focus();
-                }
-
-                if (cancelBtn) {
-                    cancelBtn.addEventListener('click', () => {
-                        modal.close();
-                    });
                 }
 
                 if (applyBtn) {
@@ -226,7 +215,7 @@ export default async (editor: Editor, opts: Required<PluginOptions>) => {
                         if (e.ctrlKey && e.key === 'Enter') {
                             applyBtn?.click();
                         } else if (e.key === 'Escape') {
-                            cancelBtn?.click();
+                            modal.close();
                         }
                     });
                 }
