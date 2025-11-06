@@ -113,7 +113,17 @@ div.#{gjs_vars.$app-prefix}hover {
 }
 
 .#{gjs_vars.$app-prefix}toolbar-items {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   text-align: center;
+
+  & > .#{gjs_vars.$app-prefix}toolbar-item {
+    height: 26px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 }
 
 .#{gjs_vars.$app-prefix}resizer-h {
