@@ -606,3 +606,51 @@ div.#{gjs_vars.$app-prefix}hover {
     transform: rotate(360deg);
   }
 }
+
+/* Paste from Word Modal */
+
+#paste-from-word {
+  &-text {
+    margin-bottom: 15px;
+    color: gjs_vars.$fontColor;
+    font-size: 14px;
+  }
+
+  &-content {
+    box-sizing: border-box;
+    width: 100%;
+    height: 300px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    color: gjs_vars.$fontColor;
+    font-size: 14px;
+    line-height: 1.4;
+    resize: vertical;
+
+    &:focus {
+      outline: 1px solid gjs_vars.$mainColor;
+    }
+  }
+
+  &-footer {
+    margin-top: 20px;
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+  }
+
+  &-apply {
+    padding: 10px 20px;
+    background: gjs_vars.$mainColor;
+    color: gjs_vars.$whiteColor;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+
+    &:focus {
+      outline: 1px solid #2e4576;
+    }
+  }
+}

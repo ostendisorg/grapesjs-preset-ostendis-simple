@@ -154,29 +154,20 @@ export default async (editor: Editor, opts: Required<PluginOptions>) => {
                 return;
             }
 
-      const modal = editor.Modal;
-      const modalContent = `
-        <div style="padding: 20px;">
-          <h3 style="margin-top: 0; margin-bottom: 15px;">Paste List from Word</h3>
-          <p style="margin-bottom: 15px; color: #666; font-size: 14px;">
-            Paste your list content from Word or other rich text editors below. 
-            The formatting will be cleaned and converted to list items. This will replace all existing content in the list.
-          </p>
-          <textarea id="paste-from-word-content" 
-                    placeholder="Paste your Word list content here..." 
-                    style="width: 100%; height: 300px; padding: 10px; border: 1px solid #ddd; border-radius: 4px; font-family: monospace; font-size: 14px; line-height: 1.4; resize: vertical;"></textarea>
-          <div style="margin-top: 20px; display: flex; justify-content: flex-end; gap: 10px;">
-            <button id="paste-from-word-apply" 
-                    style="padding: 10px 20px; background: #6c757d; color: white; border: none; border-radius: 4px; cursor: pointer; font-size: 14px;">
-              Replace List Content
-            </button>
-          </div>
-        </div>
-      `;
+            const modal = editor.Modal;
+            const modalContent = `
+                <div>
+                    <p id="paste-from-word-text">${opts.t9n.labelPasteFromWordText}</p>
+                    <textarea id="paste-from-word-content" placeholder="${opts.t9n.labelPasteFromWordPlaceholder}"></textarea>
+                    <div id="paste-from-word-footer">
+                        <button id="paste-from-word-apply">${opts.t9n.labelPasteFromWordButton}</button>
+                    </div>
+                </div>
+            `;
 
-      modal.setTitle('');  // Remove default title since we have a custom header
-      modal.setContent(modalContent);
-      modal.open();
+            modal.setTitle(opts.t9n.labelPasteFromWord);
+            modal.setContent(modalContent);
+            modal.open();
 
             setTimeout(() => {
                 const textarea = document.getElementById('paste-from-word-content') as HTMLTextAreaElement;
