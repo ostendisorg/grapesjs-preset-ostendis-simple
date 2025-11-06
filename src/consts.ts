@@ -25,6 +25,84 @@ export const ulListItem =
   uListItemContent +
   `</li>`;
 
+// Comprehensive bullet point patterns for detection and removal
+export const BULLET_PATTERNS: readonly RegExp[] = [
+    // Basic ASCII bullets
+    /^[-*+]\s+/,
+
+    // Common Unicode bullets
+    /^[•·▪▫‣⁃◦‧⦿⦾⚬]/u,
+
+    // Word/Wingdings private use area characters
+    /^[\uF0A7\uF0B6\uF0FC\uF0A8\uF076\uF0D8\uF0E0]/u,
+
+    // Numbered lists
+    /^\d+[.)]\s+/,
+
+    // Alphabetic lists
+    /^[a-zA-Z][.)]\s+/,
+
+    // Roman numerals
+    /^[ivxlcdm]+[.)]\s+/i,
+
+    // Word lowercase o with number (e.g., "o 3")
+    /^o\s+/i,
+
+    // Special symbols
+    /^§\s+/u,
+
+    // Circles and dots
+    /^[○●◘◙]/u,
+
+    // Squares
+    /^[■□]/u,
+
+    // Diamonds
+    /^[◆◇⬥❖]/u,
+
+    // Arrows (including single and double guillemets)
+    /^[►➔➢➤→⇒▸▹⏵⮚›»]/u,
+
+    // Checkmarks
+    /^[✓✗]/u,
+
+    // Stars and asterisks
+    /^[⭐✦✧✱✲✳✴]/u,
+
+    // Circled numbers (1-20)
+    /^[①②③④⑤⑥⑦⑧⑨⑩⑪⑫⑬⑭⑮⑯⑰⑱⑲⑳]/u,
+
+    // Circled zero
+    /^[⓪⓿]/u,
+
+    // Circled lowercase letters
+    /^[ⓐⓑⓒⓓⓔⓕⓖⓗⓘⓙⓚⓛⓜⓝⓞⓟⓠⓡⓢⓣⓤⓥⓦⓧⓨⓩ]/u,
+
+    // Circled uppercase letters
+    /^[ⒶⒷⒸⒹⒺⒻⒼⒽⒾⒿⓀⓁⓂⓃⓄⓅⓆⓇⓈⓉⓊⓋⓌⓍⓎⓏ]/u,
+
+    // HTML entities (named)
+    /^&bull;\s*/,
+    /^&middot;\s*/,
+
+    // HTML entities (decimal) - common bullets
+    /^&#8226;\s*/,  // •
+    /^&#8227;\s*/,  // ‣
+    /^&#8259;\s*/,  // ⁃
+    /^&#8594;\s*/,  // →
+    /^&#8658;\s*/,  // ⇒
+    /^&#9312;\s*/,  // ①
+    /^&#9313;\s*/,  // ②
+    /^&#9314;\s*/,  // ③
+    /^&#9632;\s*/,  // ■
+    /^&#9633;\s*/,  // □
+    /^&#9670;\s*/,  // ◆
+    /^&#9671;\s*/,  // ◇
+    /^&#9675;\s*/,  // ○
+    /^&#9679;\s*/,  // ●
+    /^&#10148;\s*/, // ➤
+] as const;
+
 // Define ostendis type trait for text and default components
 export function ostTypeTextTrait(opts: Required<PluginOptions>) {
   return {

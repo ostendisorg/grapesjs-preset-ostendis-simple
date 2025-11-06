@@ -1,6 +1,6 @@
 import type { Editor } from "grapesjs";
 import PluginOptions from "./pluginOptions";
-import { cmdDeviceDesktop, cmdDeviceMobile, cmdDeviceTablet } from "./consts";
+import { BULLET_PATTERNS, cmdDeviceDesktop, cmdDeviceMobile, cmdDeviceTablet } from "./consts";
 
 export default async (editor: Editor, opts: Required<PluginOptions>) => {
     const { Commands } = editor;
@@ -19,30 +19,6 @@ export default async (editor: Editor, opts: Required<PluginOptions>) => {
         run: (ed) => ed.setDevice("Mobile portrait"),
         stop: () => {},
     });
-
-   // Bullet point patterns for detection and removal
-    const BULLET_PATTERNS: readonly RegExp[] = [
-        /^[•·▪▫‣⁃◦‧⦿⦾]/,
-        /^[-*+]\s+/,
-        /^\d+[.)]\s+/,
-        /^[a-zA-Z][.)]\s+/,
-        /^[ivxlcdm]+[.)]\s+/i,
-        /^§\s+/,
-        /^►\s+/,
-        /^○\s+/,
-        /^●\s+/,
-        /^■\s+/,
-        /^□\s+/,
-        /^✓\s+/,
-        /^✗\s+/,
-        /^&bull;\s*/,
-        /^&middot;\s*/,
-        /^&#8226;\s*/,
-        /^&#8227;\s*/,
-        /^&#8259;\s*/,
-        /^&#9675;\s*/,
-        /^&#9679;\s*/,
-    ] as const;
 
     // Helper function to check if a line is a bullet point
     function isBulletPoint(line: string): boolean {
