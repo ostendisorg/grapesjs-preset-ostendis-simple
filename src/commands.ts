@@ -20,65 +20,45 @@ export default async (editor: Editor, opts: Required<PluginOptions>) => {
         stop: () => {},
     });
 
+   // Bullet point patterns for detection and removal
+    const BULLET_PATTERNS: readonly RegExp[] = [
+        /^[•·▪▫‣⁃◦‧⦿⦾]/,
+        /^[-*+]\s+/,
+        /^\d+[.)]\s+/,
+        /^[a-zA-Z][.)]\s+/,
+        /^[ivxlcdm]+[.)]\s+/i,
+        /^§\s+/,
+        /^►\s+/,
+        /^○\s+/,
+        /^●\s+/,
+        /^■\s+/,
+        /^□\s+/,
+        /^✓\s+/,
+        /^✗\s+/,
+        /^&bull;\s*/,
+        /^&middot;\s*/,
+        /^&#8226;\s*/,
+        /^&#8227;\s*/,
+        /^&#8259;\s*/,
+        /^&#9675;\s*/,
+        /^&#9679;\s*/,
+    ] as const;
+
     // Helper function to check if a line is a bullet point
     function isBulletPoint(line: string): boolean {
         const trimmedLine = line.trim();
-
-        // Check for various bullet point patterns
-        const bulletPatterns = [
-            /^[•·▪▫‣⁃◦‧⦿⦾]/,
-            /^[-*+]\s+/,
-            /^\d+[.)]\s+/,
-            /^[a-zA-Z][.)]\s+/,
-            /^[ivxlcdm]+[.)]\s+/i,
-            /^§\s+/,
-            /^►\s+/,
-            /^○\s+/,
-            /^●\s+/,
-            /^■\s+/,
-            /^□\s+/,
-            /^✓\s+/,
-            /^✗\s+/,
-            /^&bull;\s*/,
-            /^&middot;\s*/,
-            /^&#8226;\s*/,
-            /^&#8227;\s*/,
-            /^&#8259;\s*/,
-            /^&#9675;\s*/,
-            /^&#9679;\s*/,
-        ];
-
-        return bulletPatterns.some(pattern => pattern.test(trimmedLine));
+        return BULLET_PATTERNS.some(pattern => pattern.test(trimmedLine));
     }
 
     // Helper function to remove bullet point markers
     function removeBulletPoint(line: string): string {
-        const trimmedLine = line.trim();
+        let trimmedLine = line.trim();
 
-        let cleaned = trimmedLine
-            .replace(/^[•·▪▫‣⁃◦‧⦿⦾]\s*/, '')
-            .replace(/^[-*+]\s+/, '')
-            .replace(/^\d+[.)]\s+/, '')
-            .replace(/^[a-zA-Z][.)]\s+/, '')
-            .replace(/^[ivxlcdm]+[.)]\s+/i, '')
-            .replace(/^§\s+/, '')
-            .replace(/^►\s+/, '')
-            .replace(/^○\s+/, '')
-            .replace(/^●\s+/, '')
-            .replace(/^■\s+/, '')
-            .replace(/^□\s+/, '')
-            .replace(/^✓\s+/, '')
-            .replace(/^✗\s+/, '')
-            .replace(/^&bull;\s*/, '')
-            .replace(/^&middot;\s*/, '')
-            .replace(/^&#8226;\s*/, '')
-            .replace(/^&#8227;\s*/, '')
-            .replace(/^&#8259;\s*/, '')
-            .replace(/^&#9675;\s*/, '')
-            .replace(/^&#9679;\s*/, '')
-            .trim();
+        for (const pattern of BULLET_PATTERNS) {
+            trimmedLine = trimmedLine.replace(pattern, '');
+        }
 
-        return cleaned || 'Text';
+        return trimmedLine.trim() || 'Text';
     }
 
     // Helper function to clean individual item content
