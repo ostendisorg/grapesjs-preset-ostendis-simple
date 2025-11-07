@@ -27,28 +27,35 @@ export const ulListItem =
 
 // Comprehensive bullet point patterns for detection and removal
 export const BULLET_PATTERNS: readonly RegExp[] = [
-    // Basic ASCII bullets
-    /^[-*+]\s+/,
+    // Parenthesized numeric/alphabetic markers: (1), (a), (A)
+    /^\(\d+\)\s+/,
+    /^\([a-zA-Z]\)\s+/,
 
-    // Common Unicode bullets
-    /^[•·▪▫‣⁃◦‧⦿⦾⚬]/u,
+    // Hierarchical numbering: 1. / 1) / 1.2. / 2.3.4)
+    /^\d+(?:\.\d+)*[.)]\s+/,
 
-    // Word/Wingdings private use area characters
-    /^[\uF0A7\uF0B6\uF0FC\uF0A8\uF076\uF0D8\uF0E0]/u,
-
-    // Numbered lists
-    /^\d+[.)]\s+/,
-
-    // Alphabetic lists
+    // Single alphabetic list markers: a) a. A) A.
     /^[a-zA-Z][.)]\s+/,
 
-    // Roman numerals
-    /^[ivxlcdm]+[.)]\s+/i,
+    // Roman numerals (bounded, followed by . or ) and space)
+    /^[IVXLCDM]{1,12}[.)]\s+/i,
 
-    // Word lowercase o with number (e.g., "o 3")
+    // Word style lowercase o bullet (kept broad per request)
     /^o\s+/i,
 
-    // Special symbols
+    // Basic ASCII bullets (hyphen, asterisk, plus)
+    /^[-*+]\s+/,
+
+    // Dashes often used as bullets (en/em)
+    /^[–—]\s+/,
+
+    // Common Unicode bullets & similar symbols
+    /^[•·▪▫‣⁃◦‧⦿⦾⚬]/u,
+
+    // Private use (Word/Wingdings)
+    /^[\uF0A7\uF0B6\uF0FC\uF0A8\uF076\uF0D8\uF0E0]/u,
+
+    // Section sign
     /^§\s+/u,
 
     // Circles and dots
@@ -60,47 +67,44 @@ export const BULLET_PATTERNS: readonly RegExp[] = [
     // Diamonds
     /^[◆◇⬥❖]/u,
 
-    // Arrows (including single and double guillemets)
+    // Arrows (incl. guillemets)
     /^[►➔➢➤→⇒▸▹⏵⮚›»]/u,
 
     // Checkmarks
     /^[✓✗]/u,
 
-    // Stars and asterisks
+    // Stars and similar asterisks
     /^[⭐✦✧✱✲✳✴]/u,
 
-    // Circled numbers (1-20)
-    /^[①②③④⑤⑥⑦⑧⑨⑩⑪⑫⑬⑭⑮⑯⑰⑱⑲⑳]/u,
+    // Circled numbers ①-⑳
+    /^[\u2460-\u2473]/u,
 
-    // Circled zero
+    // Circled zero variants
     /^[⓪⓿]/u,
 
-    // Circled lowercase letters
-    /^[ⓐⓑⓒⓓⓔⓕⓖⓗⓘⓙⓚⓛⓜⓝⓞⓟⓠⓡⓢⓣⓤⓥⓦⓧⓨⓩ]/u,
+    // Circled lowercase letters ⓐ-ⓩ
+    /^[\u24D0-\u24E9]/u,
 
-    // Circled uppercase letters
-    /^[ⒶⒷⒸⒹⒺⒻⒼⒽⒾⒿⓀⓁⓂⓃⓄⓅⓆⓇⓈⓉⓊⓋⓌⓍⓎⓏ]/u,
+    // Circled uppercase letters Ⓐ-Ⓩ
+    /^[\u24B6-\u24CF]/u,
 
-    // HTML entities (named)
-    /^&bull;\s*/,
-    /^&middot;\s*/,
+    // HTML named entities
+    /^&bull;\s+/,
+    /^&middot;\s+/,
 
-    // HTML entities (decimal) - common bullets
-    /^&#8226;\s*/,  // •
-    /^&#8227;\s*/,  // ‣
-    /^&#8259;\s*/,  // ⁃
-    /^&#8594;\s*/,  // →
-    /^&#8658;\s*/,  // ⇒
-    /^&#9312;\s*/,  // ①
-    /^&#9313;\s*/,  // ②
-    /^&#9314;\s*/,  // ③
-    /^&#9632;\s*/,  // ■
-    /^&#9633;\s*/,  // □
-    /^&#9670;\s*/,  // ◆
-    /^&#9671;\s*/,  // ◇
-    /^&#9675;\s*/,  // ○
-    /^&#9679;\s*/,  // ●
-    /^&#10148;\s*/, // ➤
+    // HTML decimal entities (selected)
+    /^&#8226;\s+/,  // •
+    /^&#8227;\s+/,  // ‣
+    /^&#8259;\s+/,  // ⁃
+    /^&#8594;\s+/,  // →
+    /^&#8658;\s+/,  // ⇒
+    /^&#9632;\s+/,  // ■
+    /^&#9633;\s+/,  // □
+    /^&#9670;\s+/,  // ◆
+    /^&#9671;\s+/,  // ◇
+    /^&#9675;\s+/,  // ○
+    /^&#9679;\s+/,  // ●
+    /^&#10148;\s+/, // ➤
 ] as const;
 
 // Define ostendis type trait for text and default components
