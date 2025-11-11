@@ -203,11 +203,6 @@ div.#{gjs_vars.$app-prefix}hover {
   background-color: gjs_vars.$whiteColor;
 }
 
-/* Hide Toolbar except "to parent" in simple editor */
-.simple .#{gjs_vars.$app-prefix}toolbar-item:not(:first-child) {
-  display: none;
-}
-
 .#{gjs_vars.$app-prefix}ost-toolbar {
   display: none;
   position: absolute;
