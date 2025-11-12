@@ -11,11 +11,12 @@ import {ostTrans} from "./ostTranslations";
 export type RequiredPluginOptions = Required<PluginOptions>;
 
 type ToolbarButton = {
-    attributes: {
-        class: string;
+    attributes?: {
+        class?: string;
         "data-tooltip"?: string;
         "data-tooltip-pos"?: "bottom",
     };
+    label?: string;
     command: string;
 };
 
@@ -105,8 +106,8 @@ const plugin: Plugin<PluginOptions> = async (
                 });
                 //If list element is empty replace with placeholder text (M&E case:)
                 if (selected.components().length === 0 && !selected.get("content")) {
-                    var selectedPosition = selected.index();
-                    var newComponent = selected
+                    const selectedPosition = selected.index();
+                    const newComponent = selected
                         .parent()
                         ?.append("<li>Text</li>", {at: selectedPosition});
                     selected.remove();
@@ -138,7 +139,7 @@ const plugin: Plugin<PluginOptions> = async (
                         command: "paste-from-word",
                     },
                     {
-                        attributes: {class: "fa-solid fa-arrow-up"},
+                        label: '<svg viewBox="0 0 24 24"><path fill="currentColor" d="M13,20H11V8L5.5,13.5L4.08,12.08L12,4.16L19.92,12.08L18.5,13.5L13,8V20Z"></path></svg>',
                         command: "select-parent",
                     },
                 ];
@@ -148,13 +149,13 @@ const plugin: Plugin<PluginOptions> = async (
                 });
 
                 // Hide OST toolbar for UL elements
-                var ostToolbar = document.querySelector(".gjs-ost-toolbar");
+                const ostToolbar = document.querySelector(".gjs-ost-toolbar");
                 ostToolbar?.classList.remove("show");
             } else {
                 // For other elements, show default toolbar with only select-parent
                 const defaultToolbar: ToolbarButton[] = [
                     {
-                        attributes: {class: "fa-solid fa-arrow-up"},
+                        label: '<svg viewBox="0 0 24 24"><path fill="currentColor" d="M13,20H11V8L5.5,13.5L4.08,12.08L12,4.16L19.92,12.08L18.5,13.5L13,8V20Z"></path></svg>',
                         command: "select-parent",
                     },
                 ];
@@ -164,7 +165,7 @@ const plugin: Plugin<PluginOptions> = async (
                 });
 
                 // Hide OST toolbar for other elements
-                var ostToolbar = document.querySelector(".gjs-ost-toolbar");
+                const ostToolbar = document.querySelector(".gjs-ost-toolbar");
                 ostToolbar?.classList.remove("show");
             }
         }
@@ -172,7 +173,7 @@ const plugin: Plugin<PluginOptions> = async (
 
     // On deselected components
     editor.on("component:deselected", () => {
-        var ostToolbar = document.querySelector(".gjs-ost-toolbar");
+        const ostToolbar = document.querySelector(".gjs-ost-toolbar");
         ostToolbar?.classList.remove("show");
     });
 
@@ -185,10 +186,10 @@ const plugin: Plugin<PluginOptions> = async (
     }
 
     function showOstToolbar(listItem: Component | undefined) {
-        var elPos = listItem?.index() || 0;
-        var elLast = listItem?.parent()?.getLastChild().index();
+        const elPos = listItem?.index() || 0;
+        const elLast = listItem?.parent()?.getLastChild().index();
 
-        var ostToolbar = document.querySelector(".gjs-ost-toolbar") as HTMLElement;
+        const ostToolbar = document.querySelector(".gjs-ost-toolbar") as HTMLElement;
         if (ostToolbar != undefined) {
             ostToolbar.innerHTML = "";
 
@@ -248,7 +249,7 @@ const plugin: Plugin<PluginOptions> = async (
             dwnBtn.title = options.t9n.ostToolbarDown;
             dwnBtn.classList.add("gjs-ost-toolbar-item", "down");
             if (elPos != elLast) {
-                var toPos = elPos + 2;
+                let toPos = elPos + 2;
                 if (elPos == elLast) {
                     toPos = 0;
                 }
