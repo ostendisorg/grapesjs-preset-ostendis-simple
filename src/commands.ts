@@ -1,23 +1,26 @@
-import type { Editor } from "grapesjs";
+import type {Editor} from "grapesjs";
 import PluginOptions from "./pluginOptions";
-import { BULLET_PATTERNS, cmdDeviceDesktop, cmdDeviceMobile, cmdDeviceTablet } from "./consts";
+import {BULLET_PATTERNS, cmdDeviceDesktop, cmdDeviceMobile, cmdDeviceTablet} from "./consts";
 
 export default async (editor: Editor, opts: Required<PluginOptions>) => {
-    const { Commands } = editor;
+    const {Commands} = editor;
 
     Commands.add(cmdDeviceDesktop, {
         run: (ed) => ed.setDevice("Desktop"),
-        stop: () => {},
+        stop: () => {
+        },
     });
 
     Commands.add(cmdDeviceTablet, {
         run: (ed) => ed.setDevice("Tablet"),
-        stop: () => {},
+        stop: () => {
+        },
     });
 
     Commands.add(cmdDeviceMobile, {
         run: (ed) => ed.setDevice("Mobile portrait"),
-        stop: () => {},
+        stop: () => {
+        },
     });
 
     // Helper function to check if a line is a bullet point
@@ -136,7 +139,7 @@ export default async (editor: Editor, opts: Required<PluginOptions>) => {
                     <p id="paste-from-word-text">${opts.t9n.labelPasteFromWordText}</p>
                     <textarea id="paste-from-word-content" placeholder="${opts.t9n.labelPasteFromWordPlaceholder}"></textarea>
                     <div id="paste-from-word-footer">
-                        <button id="paste-from-word-apply">${opts.t9n.labelPasteFromWordButton}</button>
+                        <button id="paste-from-word-apply" class="gjs-btn-prim">${opts.t9n.labelPasteFromWordButton}</button>
                     </div>
                 </div>
             `;

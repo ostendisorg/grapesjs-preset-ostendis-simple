@@ -7,6 +7,7 @@
 .#{gjs_vars.$app-prefix}two-color {
   color: gjs_vars.$fontColor;
 }
+
 .#{gjs_vars.$app-prefix}blocks-c {
   background-color: #f2f2f2;
 }
@@ -76,10 +77,12 @@
   -moz-osx-font-smoothing: grayscale;
   font-size: 48px;
 }
+
 .#{gjs_vars.$app-prefix}block.fa-regular::before,
 .#{gjs_vars.$app-prefix}block.fa-brands::before {
   font-weight: 400;
 }
+
 .#{gjs_vars.$app-prefix}block.fa-solid::before {
   font-weight: 900;
 }
@@ -388,6 +391,7 @@ div.#{gjs_vars.$app-prefix}hover {
 .#{gjs_vars.$app-prefix}f-button::before {
   content: "B";
 }
+
 .#{gjs_vars.$app-prefix}f-divider::before {
   content: "D";
 }
@@ -421,6 +425,7 @@ div.#{gjs_vars.$app-prefix}hover {
 .text-danger {
   color: #f92929;
 }
+
 /* Alert Upload Modal */
 #alert-msg-overlay {
   position: absolute;
@@ -430,6 +435,7 @@ div.#{gjs_vars.$app-prefix}hover {
   height: 401px;
   z-index: 990;
 }
+
 .alert-msg {
   position: absolute;
   background-color: gjs_vars.$whiteColor;
@@ -458,6 +464,7 @@ div.#{gjs_vars.$app-prefix}hover {
       }
     }
   }
+
   .content {
     padding: 20px;
     box-sizing: border-box;
@@ -479,9 +486,11 @@ div.#{gjs_vars.$app-prefix}hover {
         }
       }
     }
+
     strong {
       font-weight: bold;
     }
+
     button.ok {
       margin: 15px auto;
       display: flex;
@@ -524,6 +533,7 @@ div.#{gjs_vars.$app-prefix}hover {
     max-width: 100%;
     border-radius: 5px;
   }
+
   .#{gjs_vars.$app-prefix}mdl-header {
     background-color: gjs_vars.$accentColor;
     color: gjs_vars.$whiteColor;
@@ -532,12 +542,15 @@ div.#{gjs_vars.$app-prefix}hover {
     border-top-right-radius: 5px;
     font-weight: bold;
   }
+
   .#{gjs_vars.$app-prefix}mdl-btn-close {
     color: gjs_vars.$whiteColor;
   }
+
   .#{gjs_vars.$app-prefix}mdl-content {
     padding: 20px;
   }
+
   button.ok {
     margin: 15px auto;
     display: flex;
@@ -550,10 +563,12 @@ div.#{gjs_vars.$app-prefix}hover {
     font-size: 1.1rem;
     cursor: pointer;
   }
+
   button.ok:hover {
     background-color: #dfdfdf;
   }
 }
+
 /* Color Picker */
 .#{gjs_vars.$app-prefix}editor-cont .sp-container .sp-choose {
   background: gjs_vars.$mainColor;
@@ -561,12 +576,14 @@ div.#{gjs_vars.$app-prefix}hover {
   color: gjs_vars.$whiteColor;
   border-radius: 0;
 }
+
 .#{gjs_vars.$app-prefix}editor-cont .sp-container .sp-choose:hover,
 .#{gjs_vars.$app-prefix}editor-cont .sp-container .sp-choose:active {
   background: gjs_vars.$mainColor;
   border-color: gjs_vars.$mainColor;
   color: gjs_vars.$fontColor;
 }
+
 /* Traits */
 .#{gjs_vars.$app-prefix}trt-trait {
   padding: 10px;
@@ -576,22 +593,26 @@ div.#{gjs_vars.$app-prefix}hover {
     width: 100%;
   }
 }
+
 /* Ostendis Block Traits */
 .#{gjs_vars.$app-prefix}select-option-ok,
 .#{gjs_vars.$app-prefix}select-option-ok:checked {
   background-color: rgb(185, 255, 178);
   color: rgb(0, 100, 0);
 }
+
 .#{gjs_vars.$app-prefix}select-option-nok,
 .#{gjs_vars.$app-prefix}select-option-nok:checked {
   background-color: rgb(255, 179, 179);
   color: rgb(104, 0, 0);
 }
+
 /* Scale Trait Color Picker */
 .#{gjs_vars.$app-prefix}trt-traits .sp-container {
   top: 30px !important;
   left: -200px !important;
 }
+
 /* animation */
 @keyframes spin {
   0% {
@@ -629,23 +650,16 @@ div.#{gjs_vars.$app-prefix}hover {
   }
 
   &-footer {
-    margin-top: 20px;
     display: flex;
     justify-content: flex-end;
     gap: 10px;
   }
 
   &-apply {
-    padding: 10px 20px;
-    background: gjs_vars.$mainColor;
+    margin-top: 10px;
+    background-color: gjs_vars.$mainColor;
     color: gjs_vars.$whiteColor;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 14px;
-
-    &:focus {
-      outline: 1px solid #2e4576;
-    }
+    padding-inline: 15px;
+    margin-left: auto;
   }
 }
