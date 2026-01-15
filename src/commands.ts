@@ -170,7 +170,7 @@ export default async (editor: Editor, opts: Required<PluginOptions>) => {
                             });
 
                             listItems.forEach(itemContent => {
-                                const liHtml = `<li class="ulistitem" style="text-align: left;"><span class="fa-li" style="left: -2em; width: 2em;"><i class="fas fa-circle" style="font-size: 0.4em; line-height: inherit; display: block;"></i></span><p style="margin: 0; padding: 0; text-align: left;">${itemContent}</p></li>`;
+                                const liHtml = `<li class="ulistitem" style="text-align: left;"><span class="fa-li" style="left: -2em; width: 2em;"><i class="fas fa-circle" style="font-size: 0.4em; line-height: inherit; display: block;"></i></span><div>${itemContent}</div></li>`;
                                 selected.append(liHtml);
                             });
 

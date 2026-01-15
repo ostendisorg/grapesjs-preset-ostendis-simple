@@ -18,7 +18,7 @@ export const uListItemContent = `
     <span class="fa-li" style="left:-2em;width:2em;" draggable="false" removable="false" editable="false" copyable="false">
       <i class="fas fa-circle" data-gjs-type="icon" style="font-size:0.4em;line-height:inherit;display:block;" draggable="false" removable="false" editable="false" copyable="false"></i>
     </span>
-    <p style="margin:0;padding:0;text-align:left;" draggable="false" removable="false" copyable="false">Text</p>`;
+    <div draggable="false" removable="false" copyable="false">Text</div>`;
 
 export const ulListItem =
   `<li style="text-align:left" data-gjs-type="ulistitem">` +
